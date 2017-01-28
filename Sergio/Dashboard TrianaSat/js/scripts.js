@@ -3,7 +3,7 @@ function initializeJS() {
     $('.tooltips').tooltip();
 
     //popovers
-    $('.popovers').popover();
+    //$('.popovers').popover();
 
     //custom scrollbar
         //for html
@@ -84,6 +84,10 @@ function initializeJS() {
             }, 2000)
         })
     }
+}
+
+$(document).ready(function(){
+    initializeJS();
 
     // EVENTOS CLICK MENÚ LATERAL 
     $('#goMapa').on('click', function(){
@@ -91,7 +95,13 @@ function initializeJS() {
     });
 
     $('#goGallery').on('click', function(){
-        $('.main-wrapper').load("sections/sectionGallery.html");
+        $('.main-wrapper').load("sections/sectionGallery2.html", function(){
+            alert('cargado');
+        });
+/*        $.get("sections/sectionGallery.html", function(data){
+            $('.main-wrapper').html(data);
+        });*/
+
     });
 
     $('#goCamera').on('click', function(){
@@ -101,8 +111,5 @@ function initializeJS() {
     $('#goTable').on('click', function(){
         $('.main-wrapper').load("sections/sectionTable.html");
     });
-}
 
-$(document).ready(function(){
-    initializeJS();
 });
