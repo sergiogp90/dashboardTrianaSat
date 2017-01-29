@@ -1,3 +1,5 @@
+var actualMenuSelected;
+
 function initializeJS() {
     //tool tips
     $('.tooltips').tooltip();
@@ -89,19 +91,29 @@ function initializeJS() {
 $(document).ready(function(){
     initializeJS();
 
+    // Marcar como activo el menú mapa en el arranque, y se carga
+    // la página con el mapa.
+    actualMenuSelected = $('#goMapa').closest('li');
+    actualMenuSelected.toggleClass('active');
+    
+    $('.main-wrapper').load("sections/sectionMapa.html");
+
     // EVENTOS CLICK MENÚ LATERAL 
+
+    // Cambiar el menú activo según se pulsa.
+    $('.menuLink').on('click', function(){
+        actualMenuSelected.toggleClass('active');
+
+        actualMenuSelected = $(this).closest('li');
+        actualMenuSelected.toggleClass('active');
+    });
+
     $('#goMapa').on('click', function(){
         $('.main-wrapper').load("sections/sectionMapa.html");
     });
 
     $('#goGallery').on('click', function(){
-        $('.main-wrapper').load("sections/sectionGallery2.html", function(){
-            alert('cargado');
-        });
-/*        $.get("sections/sectionGallery.html", function(data){
-            $('.main-wrapper').html(data);
-        });*/
-
+        $('.main-wrapper').load("sections/sectionGallery.html");
     });
 
     $('#goCamera').on('click', function(){
@@ -110,6 +122,23 @@ $(document).ready(function(){
 
     $('#goTable').on('click', function(){
         $('.main-wrapper').load("sections/sectionTable.html");
+    });
+
+    // Click sobre la galería
+    $(document).on('click', '.thumbnail', function(){
+        $(this).toggleClass('imageSelected');
+    });
+
+    /*
+        Muestra/oculta el botón de ver la foto en grande al pasar el ratón
+        sobre cada elemento de la galería.
+    */
+    $(document).on('hover', '.thumb', function(){
+        alert('hover')
+        $(this).find('.btn-expand').toggleClass('shownButton');
+    }, function(){
+        alert('no hover')
+        $(this).find('.btn-expand').toggleClass('shownButton');
     });
 
 });

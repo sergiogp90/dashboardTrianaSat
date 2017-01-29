@@ -9888,27 +9888,48 @@ i.cabecera{
     font-size: 20px;
 }
 
-.hide-bullets {
-    list-style:none;
-    margin-top:20px;
+/* ESTILO GALERÍA */
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
 }
 
-.thumbnail {
-    padding: 0;
+.thumb {
+    margin-bottom: 30px;
 }
 
-.carousel-inner>.item>img, .carousel-inner>.item>a>img {
-    width: 100%;
+.imageSelected{
+    background: red;
 }
 
-.col-sm-3 a {
-    border: 1px solid transparent;
-    border-radius: 0;
-    transition: all 3s ease;
+footer {
+    margin: 50px 0;
 }
 
-.col-sm-3 a:hover {
-    border: 1px solid #ff4647;
-    border-radius: 100% 60% / 30% 10%;
-    background: linear-gradient(rgba(56,123,131,0.7),rgba(56,123,131,0.7));
+.btn-expand {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    opacity: 0;
+    margin-right: 10px;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 2.1875rem;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+}
+
+.btn-expand:hover {
+  color: #111;
+  background-color: #fff;
+  border-color: #fff;
+  opacity: 1;
+}
+
+.shownButton{
+  opacity: 1;
+  background-color: #fff;
+  border-color: #fff;
+  color: #111;
 }
