@@ -1,9 +1,11 @@
+var actualMenuSelected;
+
 function initializeJS() {
     //tool tips
     $('.tooltips').tooltip();
 
     //popovers
-    $('.popovers').popover();
+    //$('.popovers').popover();
 
     //custom scrollbar
         //for html
@@ -84,8 +86,28 @@ function initializeJS() {
             }, 2000)
         })
     }
+}
+
+$(document).ready(function(){
+    initializeJS();
+
+    // Marcar como activo el menú mapa en el arranque, y se carga
+    // la página con el mapa.
+    actualMenuSelected = $('#goMapa').closest('li');
+    actualMenuSelected.toggleClass('active');
+    
+    $('.main-wrapper').load("sections/sectionMapa.html");
 
     // EVENTOS CLICK MENÚ LATERAL 
+
+    // Cambiar el menú activo según se pulsa.
+    $('.menuLink').on('click', function(){
+        actualMenuSelected.toggleClass('active');
+
+        actualMenuSelected = $(this).closest('li');
+        actualMenuSelected.toggleClass('active');
+    });
+
     $('#goMapa').on('click', function(){
         $('.main-wrapper').load("sections/sectionMapa.html");
     });
@@ -101,8 +123,22 @@ function initializeJS() {
     $('#goTable').on('click', function(){
         $('.main-wrapper').load("sections/sectionTable.html");
     });
-}
 
-$(document).ready(function(){
-    initializeJS();
+    // Click sobre la galería
+    $(document).on('click', '.thumbnail', function(){
+        $(this).toggleClass('imageSelected');
+    });
+
+    /*
+        Muestra/oculta el botón de ver la foto en grande al pasar el ratón
+        sobre cada elemento de la galería.
+    */
+    $(document).on('hover', '.thumb', function(){
+        alert('hover')
+        $(this).find('.btn-expand').toggleClass('shownButton');
+    }, function(){
+        alert('no hover')
+        $(this).find('.btn-expand').toggleClass('shownButton');
+    });
+
 });

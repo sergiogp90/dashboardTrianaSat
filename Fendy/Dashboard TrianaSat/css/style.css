@@ -9883,6 +9883,53 @@ span.customSelect.changed {
 .cabecera{
     font-size: 24px;
 }
+
 i.cabecera{
     font-size: 20px;
+}
+
+/* ESTILO GALERÍA */
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+.thumb {
+    margin-bottom: 30px;
+}
+
+.imageSelected{
+    background: red;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.btn-expand {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    opacity: 0;
+    margin-right: 10px;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 2.1875rem;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    -webkit-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+}
+
+.btn-expand:hover {
+  color: #111;
+  background-color: #fff;
+  border-color: #fff;
+  opacity: 1;
+}
+
+.shownButton{
+  opacity: 1;
+  background-color: #fff;
+  border-color: #fff;
+  color: #111;
 }
