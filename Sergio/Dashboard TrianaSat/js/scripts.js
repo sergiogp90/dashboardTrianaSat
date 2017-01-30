@@ -151,17 +151,14 @@ $(document).ready(function(){
             closeSideBar();
         }
 
-        alert('click galeria');
-
         $.ajax({
+            cache: false,
             type: "GET",
             url: photosURL,
             headers: {
                 'Access-Control-Allow-Headers':'*'
             },
           success: function(data){
-
-            alert('success ajax');
             $.each(data.fotos, function (i, foto) {
                 var newImageHtml = '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail imageSelected" href="#">'+
                 '<img class="img-responsive" src="'+data.fotos[i].url+'" alt=""></a>'+
@@ -172,6 +169,12 @@ $(document).ready(function(){
             });
 
             $('.photosBody').append(newCols);
+          },
+          error: function(data){
+            alert("error ajax");
+            $.each(data, function(i){
+                alert(data.text());
+            });
           }
         });
     });
