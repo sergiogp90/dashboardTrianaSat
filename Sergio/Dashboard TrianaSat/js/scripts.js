@@ -113,7 +113,43 @@ $(document).ready(function(){
     });
 
     $('#goGallery').on('click', function(){
-        $('.main-wrapper').load("sections/sectionGallery.html");
+        var photosURL = 'http://salesianosftpclient.hol.es/datosjson/fotos.json';
+        var newCols = "";
+
+        $('.main-wrapper').load("sections/sectionGallery2.html");
+        
+        /*$.getJSON(photosURL, function(data) {  
+
+            $.each(data.fotos, function (i, foto) {
+                var newImageHtml = '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail imageSelected" href="#">'+
+                '<img class="img-responsive" src="'+foto.url+'" alt=""></a>'+
+                '<button class="js-button btn btn-secondary-outline btn-expand center-block" data-toggle="modal" data-target="#modalPicture"'+
+                ' type="button" value="Expand photo" role="button"><i class="fa fa-eye" aria-hidden="true"></i></button></div>';
+
+                $('.photosBody').html(newCols);
+            });
+        });*/
+
+        $.ajax({
+            type: "GET",
+            url: photosURL,
+            headers: {
+                'Access-Control-Allow-Headers':'*'
+            },
+          success: function(data){
+
+            $.each(data.fotos, function (i, foto) {
+                var newImageHtml = '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail imageSelected" href="#">'+
+                '<img class="img-responsive" src="'+data.fotos[i].url+'" alt=""></a>'+
+                '<button class="js-button btn btn-secondary-outline btn-expand center-block" data-toggle="modal" data-target="#modalPicture"'+
+                ' type="button" value="Expand photo" role="button"><i class="fa fa-eye" aria-hidden="true"></i></button></div>';
+
+                newCols+=newImageHtml;               
+            });
+
+            $('.photosBody').append(newCols);
+          }
+        });
     });
 
     $('#goCamera').on('click', function(){
@@ -133,12 +169,11 @@ $(document).ready(function(){
         Muestra/oculta el botón de ver la foto en grande al pasar el ratón
         sobre cada elemento de la galería.
     */
-    $(document).on('hover', '.thumb', function(){
-        alert('hover')
-        $(this).find('.btn-expand').toggleClass('shownButton');
-    }, function(){
-        alert('no hover')
+    $(document).on('mouseenter', '.thumb', function(){
         $(this).find('.btn-expand').toggleClass('shownButton');
     });
 
+    $(document).on('mouseleave', '.thumb', function(){
+        $(this).find('.btn-expand').toggleClass('shownButton');
+    });
 });
