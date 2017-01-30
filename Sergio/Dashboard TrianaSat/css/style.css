@@ -9934,3 +9934,7 @@ footer {
   border-color: #fff;
   color: #111;
 }
+
+#chartContainer{
+    width: 100%;
+}

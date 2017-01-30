@@ -169,6 +169,10 @@ $(document).ready(function(){
             });
 
             $('.photosBody').append(newCols);
+
+            setPagination();
+
+            updateGalleryItems();
           },
           error: function(data){
             alert("error ajax");
