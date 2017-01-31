@@ -7,7 +7,8 @@ function setPagination(){
 
     pagination.pagination({
         itemsOnPage: perPage,
-        cssStyle: "light-theme",
+        cssStyle: "compact-theme",
+        displayedPages: 3,
         onPageClick: function(pageNumber) { 
             var showFrom = perPage * (pageNumber - 1);
             var showTo = showFrom + perPage;
