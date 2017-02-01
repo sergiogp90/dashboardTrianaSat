@@ -36,4 +36,10 @@ $(document).ready(function(){
     $(document).on('click', '#resetSelecteds', function(){
         $('.thumbnail').removeClass('imageSelected');
     });
+
+    $(document).on('click', '#hola', function(){
+        var fotos = $('.imageSelected').children(".img-responsive").attr("src");
+
+        alert(fotos);
+    });
 });
