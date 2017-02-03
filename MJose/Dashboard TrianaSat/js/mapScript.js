@@ -13,6 +13,22 @@ function initMap() {
       mapTypeId: 'terrain'
     });
 
+    //ajax
+    $.ajax({
+        url: 'http://olalas.hol.es/datosJson/coordenadas.json',
+        type: "GET",
+        success: function(root){
+          var coordenadas = root.coordenadas;
+          alert(coordenadas[1]);
+        },
+        error: function(data){
+          alert("error ajax");
+          $.each(data, function(i){
+              alert(data.text());
+          });
+        }
+    });
+
     var flightPlanCoordinates = [
       {lat: 37.379324, lng: -6.012817},
       {lat: 37.372777, lng: -6.051270},
@@ -40,7 +56,7 @@ function initMap() {
 
     var infowindow = new google.maps.InfoWindow({
         map: map
-    }); 
+    });
 
     for ( var i = 0; i < flightPath.getPath().getLength(); i++ ) {
         var marker = new google.maps.Marker( {
@@ -73,7 +89,7 @@ function initMap() {
         })(marker, i));
     }
 
-    google.maps.event.addListener(flightPath, 'click', function(event) {         
+    google.maps.event.addListener(flightPath, 'click', function(event) {
         var toolTip = '<div id="map-box">'+
        '<div id="siteNotice">'+
        '</div>'+
@@ -85,7 +101,7 @@ function initMap() {
         infowindow.setContent(toolTip);
         infowindow.setPosition(event.latLng);
         infowindow.open(map);
-    });  
+    });
 
     flightPath.setMap( map );
 }

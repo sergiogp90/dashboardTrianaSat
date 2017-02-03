@@ -29,8 +29,6 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <section class="panel">
-
-
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <thead>
@@ -84,8 +82,9 @@
                         </div>
                         <!--pestaña Gráfica-->
                         <div class="tab-pane" id="tab_default_2">
-                            <h2>grafica</h2>
-                            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                            <div id="chartContainer">
+                            
+                            </div>
                         </div>
 
                     </div>
@@ -95,53 +94,4 @@
     </div>
 </div>
 
-
-<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        /*var jsonData = $.ajax({
-          url: "http://www.olalas.hol.es/datos.json",
-          dataType: "jsonp",
-					type: "GET",
-					crossDomain:true,
-          async: true
-				}).responseText;*/
-
-        $.ajax({
-            url: 'http://www.olalas.hol.es/datos.json',
-            data: {
-                format: 'json'
-            },
-            //error: function(data, evt) {
-            error: function(jqXHR, textStatus, errorThrown) {
-                /*alert('An error has occurred');
-			alert(data);
-			console.log(data);
-			console.log(evt);**/
-        alert(jqXHR);
-          alert(textStatus);
-            alert(errorThrown);
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
-            },
-            type: 'GET',
-            dataType: 'json',
-            success: function(data) {
-              alert('hola');
-                var chart = new CanvasJS.Chart("chartContainer", {
-                    title: {
-                        text: "My First Chart in CanvasJS"
-                    },
-                    data: [{
-                        // Change type to "doughnut", "line", "splineArea", etc.
-                        type: "line",
-                        dataPoints: data
-                    }]
-                });
-                chart.render();
-            },
-        });
-
-      });
-</script>
+<script src="js/chartScript.js"></script>
