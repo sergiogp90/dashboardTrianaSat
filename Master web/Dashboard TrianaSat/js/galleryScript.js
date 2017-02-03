@@ -7,7 +7,8 @@ function setPagination(){
 
     pagination.pagination({
         itemsOnPage: perPage,
-        cssStyle: "light-theme",
+        cssStyle: "compact-theme",
+        displayedPages: 3,
         onPageClick: function(pageNumber) { 
             var showFrom = perPage * (pageNumber - 1);
             var showTo = showFrom + perPage;
@@ -34,5 +35,11 @@ function updateGalleryItems() {
 $(document).ready(function(){
     $(document).on('click', '#resetSelecteds', function(){
         $('.thumbnail').removeClass('imageSelected');
+    });
+
+    $(document).on('click', '#hola', function(){
+        var fotos = $('.imageSelected').children(".img-responsive").attr("src");
+
+        alert(fotos);
     });
 });
