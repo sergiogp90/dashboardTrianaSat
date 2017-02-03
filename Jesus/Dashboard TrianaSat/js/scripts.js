@@ -151,19 +151,16 @@ $(document).ready(function(){
             closeSideBar();
         }
 
-        alert('click galeria');
-
         $.ajax({
+            cache: false,
             type: "GET",
             url: photosURL,
             headers: {
                 'Access-Control-Allow-Headers':'*'
             },
           success: function(data){
-
-            alert('success ajax');
             $.each(data.fotos, function (i, foto) {
-                var newImageHtml = '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail imageSelected" href="#">'+
+                var newImageHtml = '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail imageSelected">'+
                 '<img class="img-responsive" src="'+data.fotos[i].url+'" alt=""></a>'+
                 '<button class="js-button btn btn-secondary-outline btn-expand center-block" data-toggle="modal" data-target="#modalPicture"'+
                 ' type="button" value="Expand photo" role="button"><i class="fa fa-eye" aria-hidden="true"></i></button></div>';
@@ -172,6 +169,16 @@ $(document).ready(function(){
             });
 
             $('.photosBody').append(newCols);
+
+            setPagination();
+
+            updateGalleryItems();
+          },
+          error: function(data){
+            alert("error ajax");
+            $.each(data, function(i){
+                alert(data.text());
+            });
           }
         });
     });
@@ -201,11 +208,11 @@ $(document).ready(function(){
         Muestra/oculta el botón de ver la foto en grande al pasar el ratón
         sobre cada elemento de la galería.
     */
-    $(document).on('mouseenter', '.thumb', function(){
+    $(document).on('mouseenter', '.thumbnail', function(){
         $(this).find('.btn-expand').toggleClass('shownButton');
     });
 
-    $(document).on('mouseleave', '.thumb', function(){
+    $(document).on('mouseleave', '.thumbnail', function(){
         $(this).find('.btn-expand').toggleClass('shownButton');
     });
 
