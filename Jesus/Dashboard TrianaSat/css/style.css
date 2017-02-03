@@ -9898,7 +9898,7 @@ body {
 }
 
 .imageSelected{
-    background: red;
+    background: #0088cc;
 }
 
 footer {
@@ -9910,8 +9910,9 @@ footer {
     bottom: 15px;
     right: 15px;
     opacity: 0;
+    padding: 10px;
     margin-right: 10px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #fff;
     border-radius: 2.1875rem;
     -webkit-transform: translateY(-50%);
