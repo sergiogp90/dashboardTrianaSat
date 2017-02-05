@@ -9,9 +9,7 @@ $.getJSON("http://www.olalas.hol.es/dash/temperaturas.json", function (json) {
   var ejeydos = json.map(function(item){
     return item.temp;
   })
-  alert(ejex);
-  alert(ejeyuno);
-  alert(ejeydos);
+
 
   var data = {
     labels: ejex,
@@ -38,9 +36,9 @@ $.getJSON("http://www.olalas.hol.es/dash/temperaturas.json", function (json) {
 
   Chart.defaults.global.animationSteps = 50;
   Chart.defaults.global.tooltipYPadding = 16;
-  Chart.defaults.global.tooltipCornerRadius = 0;
+  Chart.defaults.global.tooltipCornerRadius = 2;
   Chart.defaults.global.tooltipTitleFontStyle = "normal";
-  Chart.defaults.global.tooltipFillColor = "rgba(0,160,0,0.8)";
+  Chart.defaults.global.tooltipFillColor = "rgba(100,160,0,0.8)";
   Chart.defaults.global.animationEasing = "easeOutBounce";
   Chart.defaults.global.responsive = true;
   Chart.defaults.global.scaleLineColor = "black";
