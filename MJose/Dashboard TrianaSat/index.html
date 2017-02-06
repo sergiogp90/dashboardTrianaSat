@@ -24,7 +24,7 @@
     <section id="container" class="">
         <!--header start-->
         <header class="header dark-bg">
-            <a href="mapa.html" class="logo">Triana<span class="lite">Sat</span></a>
+            <a href="#" class="logo">Triana<span class="lite">Sat</span></a>
 
             <!-- Opciones barra superior derecha (LOGIN) -->
             <div class="top-nav notification-row">
@@ -37,7 +37,6 @@
             <!-- Fin LOGIN -->
         </header>
         <!--header end-->
-
         <!--main content start-->
         <section id="content-main">
             <section class="wrapper">
@@ -45,9 +44,22 @@
             </section>
         </section>
         <!--main content end-->
-
     </section>
     <!-- container section end -->
+    <div id="modalToken" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="modalTokenLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modalTokenLabel">Token del proyecto</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="qrcode"></div>
+                    <p>Si lo desea, también lo tiene en texto:</p>
+                    <p>Token</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -55,8 +67,6 @@
     <script src="js/libraries/jquery.scrollTo.min.js"></script>
     <script src="js/libraries/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="js/libraries/qrcode.min.js"></script>
-
-    <script src="js/themeScript.js" type="text/javascript"></script>
     <script src="js/projectTableScript.js"></script>
 </body>
 
