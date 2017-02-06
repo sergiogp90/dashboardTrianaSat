@@ -4819,19 +4819,19 @@ footer {
   width: 40px;
   height: 40px;
   margin: 20px auto 0;
-  opacity: 0;
   -webkit-transform: translateY(50px);
       -ms-transform: translateY(50px);
           transform: translateY(50px);
+  display: none;
 }
 
 .optionsContainer:hover
 .buttons:not(:last-child) {
-  opacity: 1;
   -webkit-transform: none;
       -ms-transform: none;
           transform: none;
   margin: 15px auto 0;
+  display: block;
 }
 
 /* Unessential styling for sliding up buttons at differnt speeds */
@@ -4850,12 +4850,12 @@ footer {
   background-size: contain;
 }
 
-/*.buttons:not(:last-child):nth-last-child(3) {
+.buttons:not(:last-child):nth-last-child(3) {
   -webkit-transition-delay: 75ms;
           transition-delay: 40ms;
-  background-image: url('http://cbwconline.com/IMG/Twitter-Flat.png');
+  background-image: url('../img/icons/video-player.png');
   background-size: contain;
-}*/
+}
 
 /*.buttons:not(:last-child):nth-last-child(4) {
   -webkit-transition-delay: 100ms;
@@ -4894,10 +4894,30 @@ footer {
   position: absolute;
   bottom: 0;
   padding: 5px;
+  cursor: pointer;
 }
+
 .negrita{
   font-weight: 400;
 }
+
 .botones{
   padding-right: 10px;
+}
+
+.table-projects tr:not(:first-child){
+    cursor: pointer;
+}
+
+#modalToken .modal-body{
+  padding: 20px;
+}
+
+#modalToken p{
+  margin-top: 15px;
+  font-size: 18px;
+}
+.hideToken{
+  visibility: collapse;
+  display: none;
 }
