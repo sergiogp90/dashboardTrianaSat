@@ -1,26 +1,25 @@
 var pagination = $("#pagination");
 
-function setPagination(){
+function setPagination() {
     var items = $('.thumb');
-
     var perPage = 12;
 
     pagination.pagination({
         itemsOnPage: perPage,
-        cssStyle: "light-theme",
-        onPageClick: function(pageNumber) { 
+        cssStyle: "compact-theme",
+        displayedPages: 3,
+        onPageClick: function(pageNumber) {
             var showFrom = perPage * (pageNumber - 1);
             var showTo = showFrom + perPage;
 
             items.hide()
-                 .slice(showFrom, showTo).show();
+                .slice(showFrom, showTo).show();
         }
     });
 }
 
 function updateGalleryItems() {
-    items = $(".thumb");
-
+    var items = $('.thumb');
     pagination.pagination("updateItems", items.length);
 
     var page = Math.min(
@@ -31,8 +30,69 @@ function updateGalleryItems() {
     pagination.pagination("selectPage", page);
 }
 
-$(document).ready(function(){
-    $(document).on('click', '#resetSelecteds', function(){
+$(document).ready(function() {
+    // Click sobre las fotografías de la galería
+    $(document).on('click', '.thumbnail', function() {
+        $(this).toggleClass('imageSelected');
+    });
+
+    /*
+        Muestra/oculta el botón de ver la foto en grande al pasar el ratón
+        sobre cada elemento de la galería.
+    */
+    $(document).on('mouseenter', '.thumb', function() {
+        $(this).find('.btn-expand').toggleClass('shownButton');
+    });
+
+    $(document).on('mouseleave', '.thumb', function() {
+        $(this).find('.btn-expand').toggleClass('shownButton');
+    });
+
+    // Pinta la fotografía seleccionada en el modal de detalle.
+    $(document).on('click', '.btn-expand', function() {
+        var photoUrl = $(this).siblings('a.thumbnail').find('.img-responsive').attr('src');
+        $('#photoModal').attr('src', photoUrl);
+    });
+
+    // Genera un GIF con las fotografías seleccionadas, y lo muestra en el menú lateral.
+    $('#generateTimelapse').on('click', function() {
+        var photosUrl = [];
+
+        $('.imageSelected').each(function(i) {
+            photosUrl.push($(this).children('.img-responsive').attr('src'));
+        });
+
+        gifshot.createGIF({
+                'gifWidth': 400,
+                'gifHeight': 300,
+                'images': photosUrl,
+                'interval': 0.3
+            },
+            function(obj) {
+                if (!obj.error) {
+                    var image = obj.image;
+                    $('#timelapseSideBar').attr('src', image);
+                    $('#photoTimelapseModal').attr('src', image);
+                    var actualDate = moment().format('[Generado el] DD/MM/YY [a las] HH:mm:ss');
+                    $('#modalTimelapse p').text(actualDate);
+                }
+            });
+    });
+
+    // Desmarca todas las imágenes de la galería.
+    $(document).on('click', '#resetSelecteds', function() {
         $('.thumbnail').removeClass('imageSelected');
+    });
+
+    // Marca las imágenes de la página actual.
+    $('#markActualPageItems').on('click', function() {
+        $('.thumb').filter(function() {
+            return $(this).css('display') == 'block';
+        }).find('.thumbnail').addClass('imageSelected');
+    });
+
+    // Marca todas las imágenes de la galería.
+    $('#markAll').on('click', function() {
+        $('.thumbnail').addClass('imageSelected');
     });
 });
