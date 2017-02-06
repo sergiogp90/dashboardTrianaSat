@@ -10,7 +10,7 @@ function initMap() {
 
     //ajax
     $.ajax({
-        url: 'http://salesianosftpclient.hol.es/datosjson/coordenadas.json',
+        url: 'http://www.trianasat.com/datosjson/coordenadas.json',
         type: "GET",
         cache: false,
         success: function(root){
