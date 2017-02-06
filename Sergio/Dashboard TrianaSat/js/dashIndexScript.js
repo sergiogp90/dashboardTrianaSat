@@ -55,7 +55,7 @@ $(document).ready(function(){
     });
 
     $('#goGallery').on('click', function(){
-        var photosURL = 'http://salesianosftpclient.hol.es/datosjson/fotos.json';
+        var photosURL = 'http://www.trianasat.com/datosjson/fotos.json';
         var newCols = "";
 
         $('.main-wrapper').load("sections/sectionGallery.html");
@@ -65,12 +65,8 @@ $(document).ready(function(){
         }
 
         $.ajax({
-            cache: false,
             type: "GET",
             url: photosURL,
-            headers: {
-                'Access-Control-Allow-Headers':'*'
-            },
           success: function(data){
             $.each(data.fotos, function (i, foto) {
                 var newImageHtml = '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail">'+
