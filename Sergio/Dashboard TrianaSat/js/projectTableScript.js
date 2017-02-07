@@ -1,12 +1,19 @@
 $(document).ready(function(){
-    $('#content-main .wrapper').load('sections/sectionProjectTable.html');
-
     var adminLogged = $('.user-dropdown').length > 0;
 
-    if(!adminLogged){
-       $('.btnToken').hide("fast");
-       alert('ocultado?')
-    }
+    $('#content-main .wrapper').load('sections/sectionProjectTable.html', function(){
+        if(!adminLogged){
+          console.log("No es admin");
+           $(".projectActions").addClass("hideToken");
+
+        }
+        else {
+          console.log("es admin");
+        }
+    });
+
+
+
     // Genera un código QR con el token del proyecto seleccionado
     // y lo muestra en un modal
     $(document).on('click', '.btnToken', function(){
