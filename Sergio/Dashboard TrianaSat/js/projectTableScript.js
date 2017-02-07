@@ -3,16 +3,9 @@ $(document).ready(function(){
 
     $('#content-main .wrapper').load('sections/sectionProjectTable.html', function(){
         if(!adminLogged){
-          console.log("No es admin");
            $(".projectActions").addClass("hideToken");
-
-        }
-        else {
-          console.log("es admin");
         }
     });
-
-
 
     // Genera un código QR con el token del proyecto seleccionado
     // y lo muestra en un modal
@@ -24,4 +17,14 @@ $(document).ready(function(){
 
         new QRCode("qrcode").makeCode(token);
     });
+
+    $(document).on("change", "input[type=checkbox]", function (e) {
+    e.preventDefault();
+
+    if ($(this).is(":checked")) {
+      alert('checked');
+      $("input[type=checkbox]").prop("checked", false);
+      $(this).prop("checked", true);
+    }
+  });
 });
