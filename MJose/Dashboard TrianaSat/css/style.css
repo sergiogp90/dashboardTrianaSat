@@ -5066,3 +5066,10 @@ footer {
   right: 2px;
   background-color: red;
 }
+.required{
+  font-size: 16px;
+  color: #00a0df
+}
+.negrita{
+  font-weight: bold;
+}
