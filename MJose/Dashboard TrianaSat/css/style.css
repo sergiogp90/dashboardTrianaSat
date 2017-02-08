@@ -4930,7 +4930,8 @@ footer {
   display: none;
 }
 
-.notification-row ul {
+/* OPCIÓN MENÚ SUPERIOR LOGIN */
+.loginRegisterMenu ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -4941,17 +4942,17 @@ footer {
   border-radius: 3px;
 }
 
-.notification-row li {
+.loginRegisterMenu li {
   float: left;
 }
 
-.notification-row #login {
+.loginRegisterMenu #login {
   border-right: 1px solid #ddd;
   box-shadow: 1px 0 0 #fff;
 }
 
-.notification-row #login-trigger,
-.notification-row #signup a {
+.loginRegisterMenu #login-trigger,
+.loginRegisterMenu #signup a {
   display: inline-block;
   *display: inline;
   *zoom: 1;
@@ -4964,21 +4965,21 @@ footer {
   text-shadow: 0 1px 0 #fff;
 }
 
-.notification-row #signup a {
+.loginRegisterMenu #signup a {
   border-radius: 0 3px 3px 0;
 }
 
-.notification-row #login-trigger {
+.loginRegisterMenu #login-trigger {
   border-radius: 3px 0 0 3px;
 }
 
-.notification-row #login-trigger:hover,
-.notification-row #login .active,
-.notification-row #signup a:hover {
+.loginRegisterMenu #login-trigger:hover,
+.loginRegisterMenu #login .active,
+.loginRegisterMenu #signup a:hover {
   background: #fff;
 }
 
-.notification-row #login-content {
+.loginRegisterMenu #login-content {
   display: none;
   position: absolute;
   top: 24px;
@@ -4991,7 +4992,7 @@ footer {
   border-radius: 3px 0 3px 3px;
 }
 
-.notification-row li #login-content {
+.loginRegisterMenu li #login-content {
   right: 0;
   width: 250px;
 }
@@ -5073,3 +5074,5 @@ footer {
 .negrita{
   font-weight: bold;
 }
+
+/* FIN ESTILOS MENU SUPERIOR LOGIN */
