@@ -4,10 +4,6 @@ var isMobile;
 // Cierra el menú lateral
 function closeSideBar(){
     $('.sidebar-menu').css('display', 'none');
-    //TODO
-    alert("hola");
-    $("#accederLetra").text('');
-    $("#iconoAcceder").removeClass("hidden");
 }
 
 // Comprueba el tamaño del dispositivo.
@@ -18,8 +14,6 @@ function checkScreenSize(){
         closeSideBar();
     }else{
         isMobile = false;
-        $("#accederLetra").text('Acceder');
-        $("#iconoAcceder").addClass("hidden");
     }
 }
 

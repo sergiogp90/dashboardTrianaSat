@@ -45,7 +45,7 @@
                         </div>
                     </li>
                     <li id="signup">
-                        <a data-toggle="modal" data-target=".bs-modal-sm" href="">Registrarse</a>
+                        <a data-toggle="modal" data-target="#modalNewUser" href="">Registrarse</a>
                     </li>
                 </ul>
             </div>
@@ -65,7 +65,7 @@
     <!-- container section end -->
 
     <!-- Modal registro-->
-    <div class="modal fade bs-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal fade bs-modal-sm" id="modalNewUser" tabindex="-1" role="dialog" aria-labelledby="modalNewUserLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="bs-example bs-example-tabs">
@@ -78,12 +78,6 @@
                                 <fieldset>
                                     <!-- Sign Up Form -->
                                     <!-- Text input-->
-                                    <div class="control-group">
-                                        <label class="control-label" for="nombreApellidos">Nombre y apellidos<span class="required">*</span></label>
-                                        <div class="controls">
-                                            <input id="nombreApellidos" type="name" placeholder="Joe Smith" class="form-control" minlength="5" required/>
-                                        </div>
-                                    </div>
 
                                     <!-- Text input-->
                                     <div class="control-group">
@@ -92,6 +86,33 @@
                                             <input id="organizacion" class="form-control" type="text" placeholder="Salesianos Triana" required>
                                         </div>
                                     </div>
+
+
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="descripcion">Descripción:<span class="required">*</span></label>
+                                        <div class="controls">
+                                        <textarea rows="2" cols="28" placeholder="Incluya una breve descripción de la organización:" required>
+                                          Descripcion
+                                        </textarea>
+                                      </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="nombreApellidos">Nombre y apellidos(administrador)<span class="required">*</span></label>
+                                        <div class="controls">
+                                            <input id="nombreApellidos" type="name" placeholder="Joe Smith" class="form-control" minlength="5" required/>
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="localidad">Localidad<span class="required">*</span></label>
+                                        <div class="controls">
+                                            <input id="localidad" type="name" placeholder="Sevilla" class="form-control" minlength="5" required/>
+                                        </div>
+                                    </div>
+
+
 
                                     <!-- Password input-->
                                     <div class="control-group">
@@ -115,21 +136,6 @@
                                         <label class="control-label" for="confirmarContraseña">Confirmar contraseña:<span class="required">*</span></label>
                                         <div class="controls">
                                             <input id="confirmarContraseña" class="form-control" name="confirmarContraseña" type="password" placeholder="********" class="input-large" required>
-                                        </div>
-                                    </div>
-
-                                    <!-- Multiple Radios (inline) -->
-                                    <div class="control-group text-center">
-                                        <label class="control-label" for="humancheck">Seguridad:<span class="required">*</span></label>
-                                        <div class="controls">
-                                            <label class="radio inline" for="humancheck-0">
-                                                <input type="radio" name="humancheck" id="humancheck-0" value="robot" checked="checked">
-                                                No soy un humano
-                                            </label>
-                                            <label class="radio inline" for="humancheck-1">
-                                                <input type="radio" name="humancheck" id="humancheck-1" value="human">
-                                                Soy un humano
-                                            </label>
                                         </div>
                                     </div>
                                 </fieldset>

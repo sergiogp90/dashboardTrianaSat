@@ -4930,7 +4930,6 @@ footer {
   display: none;
 }
 
-/* OPCIÓN MENÚ SUPERIOR LOGIN */
 .loginRegisterMenu ul {
   margin: 0;
   padding: 0;
@@ -5067,12 +5066,20 @@ footer {
   right: 2px;
   background-color: red;
 }
+
+.btn span.glyphicon {
+	opacity: 0;
+}
+.btn.active span.glyphicon {
+	opacity: 1;
+}
+
 .required{
   font-size: 16px;
   color: #00a0df
 }
+
 .negrita{
   font-weight: bold;
 }
 
-/* FIN ESTILOS MENU SUPERIOR LOGIN */
