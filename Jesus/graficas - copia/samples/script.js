@@ -11,11 +11,9 @@ $.getJSON("http://olalas.hol.es/datos.json", function (json) {
   var ejex = json.map(function(item) {
     return item.x;
   })
-alert(ejex);
   var ejeyuno = json.map(function(item){
     return item.y;
   })
-alert(ejeyuno);
   var data = {
     labels: ejex,
     datasets: [
@@ -152,23 +150,31 @@ $.getJSON("altura.json", function (json) {
 });
 
 // grafica 4 temperaturas
- var json = $.getJSON("http://olalas.hol.es/datosJson/altura.json");
+$.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
   // will generate array with ['Monday', 'Tuesday', 'Wednesday']
+  var item = json
+    var horas = [];
+    var metros = [];
+    /*
+    for(i=1;i<item.options.length;i++){
+      horas.push(item.options[i].horas);
+      metros.push(item.options[i].metros);
+      alert(item.options[i].horas);
+    }*/
+    $.each(item,function(i){
+      alert(item[i]);
+      horas.push(item[i].horas);
+      metros.push(item.options[i].metros);
+      alert(horas.get[0]);
+    })
 
+    alert(metros);
+  })
+/**
+  var ejeyuno = json.map(function(item){
+    return item.metros;
+  })
 
-
-  var valores = JSON.parse(json);
-  if( valores.length > 0 ) {
-    var atributos = "";
-    for(var aux in valores[0])
-      atributos += aux + " ";
-
-    alert("Los atributos son: " + atributos);
-  }
-  else
-    alert("No hay datos");
-
-/*
   var data = {
     labels: ejex,
     datasets: [
@@ -184,7 +190,7 @@ $.getJSON("altura.json", function (json) {
     ]
   };
 
-  var ctxcuatro = document.getElementById("temperaturasgrafica").getContext("2d");
+  var ctxtres = document.getElementById("myCharttres").getContext("2d");
   Chart.defaults.global.animationSteps = 50;
   Chart.defaults.global.tooltipYPadding = 16;
   Chart.defaults.global.tooltipCornerRadius = 2;
@@ -195,6 +201,5 @@ $.getJSON("altura.json", function (json) {
   Chart.defaults.global.scaleLineColor = "black";
   Chart.defaults.global.scaleFontSize = 16;
 
-  var myChart = new Chart(ctxcuatro).Line(data);
-});
+  var myChart = new Chart(ctxtres).Line(data);
 */
