@@ -96,4 +96,10 @@ $(document).ready(function(){
             closeSideBar();
         }
     });
+
+    $('#goMyProfile').on('click', function(){
+        $('.main-wrapper').load("sections/sectionMyProfile.html");
+
+        actualMenuSelected.removeClass('active');
+    });
 });
