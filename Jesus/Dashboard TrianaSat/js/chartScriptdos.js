@@ -7,7 +7,7 @@ $( function() {
     });
   } );
 
-$.getJSON("http://www.olalas.hol.es/dash/temperaturas.json", function (json) {
+$.getJSON("http://www.olalas.hol.es/datosJson/temperaturas.json", function (json) {
   // will generate array with ['Monday', 'Tuesday', 'Wednesday']
   var ejex = json.map(function(item) {
     return item.hora;
@@ -52,23 +52,21 @@ $.getJSON("http://www.olalas.hol.es/dash/temperaturas.json", function (json) {
   Chart.defaults.global.responsive = true;
   Chart.defaults.global.scaleLineColor = "black";
   Chart.defaults.global.scaleFontSize = 16;
-  var ctx = document.getElementById('myChart').getContext('2d');
+  var ctx = document.getElementById('temperaturas').getContext('2d');
   var lineDemo = new Chart(ctx).Line(data, {
 
   });
 
 });
-$.getJSON("http://www.olalas.hol.es/dash/temperaturas.json", function (json) {
+$.getJSON("http://www.olalas.hol.es/datosJson/altura.json", function (json) {
   // will generate array with ['Monday', 'Tuesday', 'Wednesday']
   var ejex = json.map(function(item) {
     return item.hora;
   })
   var ejeyuno = json.map(function(item){
-    return item.temp2;
+    return item.metros;
   })
-  var ejeydos = json.map(function(item){
-    return item.temp;
-  })
+
 
 alert("ejex grarfica dos");
   var data = {

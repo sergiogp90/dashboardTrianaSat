@@ -15,7 +15,7 @@ $(document).ready(function(){
     var ejeydos = json.map(function(item){
       return item.temp;
     });
-
+    alert(ejex);
     var data = {
       labels: ejex,
       datasets: [
@@ -39,7 +39,7 @@ $(document).ready(function(){
       ]
     };
 
-    var ctx = document.getElementById("myChart").getContext("2d");
+    var ctx = document.getElementById("temperaturas").getContext("2d");
     Chart.defaults.global.animationSteps = 50;
     Chart.defaults.global.tooltipYPadding = 16;
     Chart.defaults.global.tooltipCornerRadius = 2;
@@ -53,18 +53,20 @@ $(document).ready(function(){
     var myChart = new Chart(ctx).Line(data);
   });
 
-  $.getJSON("http://www.olalas.hol.es/dash/temperaturas.json", function (json) {
+  $.getJSON("http://www.olalas.hol.es/datosJson/altura.json", function (json) {
     // will generate array with ['Monday', 'Tuesday', 'Wednesday']
-    var ejex = json.map(function(item) {
-      return item.hora;
-    })
-    var ejeyuno = json.map(function(item){
-      return item.temp2;
-    })
-    var ejeydos = json.map(function(item){
-      return item.temp;
-    });
+    alert("graficas dos");
 
+    var ejex = json.map(function(item) {
+      return item:altura.hora;
+    })
+    alert(ejex);
+    var ejeyuno = json.map(function(item){
+      return item.metros;
+    })
+
+
+    alert(ejeyuno);
     var data = {
       labels: ejex,
       datasets: [
@@ -88,7 +90,7 @@ $(document).ready(function(){
       ]
     };
 
-    var ctx = document.getElementById("myChart2").getContext("2d");
+    var ctx = document.getElementById("altitud").getContext("2d");
     Chart.defaults.global.animationSteps = 50;
     Chart.defaults.global.tooltipYPadding = 16;
     Chart.defaults.global.tooltipCornerRadius = 2;

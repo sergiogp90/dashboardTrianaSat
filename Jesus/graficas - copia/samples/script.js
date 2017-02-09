@@ -1,8 +1,4 @@
 $(document).ready(function(){
-  $( "#accordion" ).accordion({
-    collapsible: true,
-    heightStyle: "content"
-  });
 
   // grafica 4 temperaturas
   //url:http://olalas.hol.es/datosJson/altura.json
@@ -55,7 +51,7 @@ $(document).ready(function(){
       alert(horas);
       alert(metros);
       var data = {
-        labels: metros,
+        labels: horas,
         datasets: [
         {
           label: "primero",
@@ -69,7 +65,7 @@ $(document).ready(function(){
         ]
       };
 
-      var ctxtres = document.getElementById("temperaturasgrafica").getContext("2d");
+      var ctxtres = document.getElementById("myChartuno").getContext("2d");
       Chart.defaults.global.animationSteps = 50;
       Chart.defaults.global.tooltipYPadding = 16;
       Chart.defaults.global.tooltipCornerRadius = 2;
@@ -85,7 +81,7 @@ $(document).ready(function(){
     })
 
 });
-
+/*
 var horas;
 var metros;
 // grafica 1 temperatura
@@ -126,7 +122,7 @@ $.getJSON("http://olalas.hol.es/datos.json", function (json) {
 
   var myChart = new Chart(ctx).Line(data);
 });
-
+*/
 /*$.getJSON( "", function( data ) {
   var items = [];
   $.each( data, function( key, val ) {
@@ -154,13 +150,14 @@ $.ajax({
 */
 
 // grafica dos altura ok
-$.getJSON("altura.json", function (json) {
+$.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
   // will generate array with ['Monday', 'Tuesday', 'Wednesday']
-  var ejex = json.map(function(item) {
+  var altura = json.altura;
+  var ejex = json.altura.map(function(item) {
     return item.hora;
   })
 
-  var ejeyuno = json.map(function(item){
+  var ejeyuno = json.altura.map(function(item){
     return item.metros;
   })
 
