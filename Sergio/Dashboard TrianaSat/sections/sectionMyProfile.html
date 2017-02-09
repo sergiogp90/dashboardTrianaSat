@@ -26,7 +26,7 @@
                                     <section class="panel">
                                         <div class="panel-body">
                                             <div class="form">
-                                                <form class="form-validate form-horizontal" id="feedback_form" method="get" action="">
+                                                <form class="form-validate form-horizontal" id="formEditProfile" method="get" action="">
                                                     <div class="form-group">
                                                         <label for="inputName" class="control-label col-lg-2">Nombre y Apellidos</label>
                                                         <div class="col-lg-10">
@@ -44,13 +44,13 @@
                                                     <div class="form-group">
                                                         <label for="inputNewPassword" class="control-label col-lg-2">Nueva contraseña</label>
                                                         <div class="col-lg-10">
-                                                            <input class="form-control" id="inputNewPassword" type="email" name="inputNewPassword" />
+                                                            <input class="form-control" id="inputNewPassword" type="password" name="inputNewPassword" />
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputRepeatNewPassword" class="control-label col-lg-2">Confirmar nueva contraseña</label>
                                                         <div class="col-lg-10">
-                                                            <input class="form-control" id="inputRepeatNewPassword" type="email" name="inputRepeatNewPassword" />
+                                                            <input class="form-control" id="inputRepeatNewPassword" type="password" name="inputRepeatNewPassword" />
                                                         </div>
                                                     </div>
 
@@ -66,70 +66,80 @@
                                 </div>
                             </div>
                         </div>
-                        <!--pestaña Gráfica-->
+                        <!-- FIN PESTAÑA EDITAR DATOS -->
+
+                        <!-- PESTAÑA TABLA USUARIOS ASOCIADOS -->
                         <div class="tab-pane" id="tabUserList">
-                          <div class="row">
-
-                          </div>
-                          <!-- page start-->
-
-                          <div class="row">
-                              <div class="col-lg-12">
-                                  <section class="panel">
-                                      <div class="table-responsive">
-                                          <table class="table">
-                                              <thead>
-                                                  <tr>
-                                                      <th><i class="fa fa-calendar"></i> Fecha</th>
-                                                      <th><i class="fa fa-arrows"></i> Coordenadas</th>
-                                                      <th><i class="fa fa-level-up"></i> Altura</th>
-                                                      <th><i class="fa fa-thermometer-empty"></i> Temperatura</th>
-                                                      <th><i class="fa fa-tint"></i> Humedad</th>
-                                                      <th><i class="fa fa-tachometer"></i> Presion</th>
-                                                      <th><i class="fa fa-flag"></i> Calidad del aire</th>
-                                                      <th><i class="fa fa-battery-3"></i> Batería</th>
-                                                  </tr>
-                                              </thead>
-                                              <tbody>
-                                                  <tr>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                  </tr>
-                                                  <tr>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                      <td>Table cell</td>
-                                                  </tr>
-                                              </tbody>
-                                          </table>
-                                      </div>
-                                  </section>
-                              </div>
-                          </div>
+                            <div class="row">
+                                <button class="fab" data-toggle="modal" data-target="#modalNewUser">+</button>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <section class="panel">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Email</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Table cell</td>
+                                                        <td>Table cell</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="modalNewUser" tabindex="-1" role="dialog" aria-labelledby="modalNewUserLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalNewUserLabel">Nuevo usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+      </div>
+      <div class="modal-body">
+          <form class="form-validate form-horizontal" id="formNewUser" method="POST" action="">
+              <div class="form-group">
+                  <label for="inputName" class="control-label col-lg-2">Nombre y Apellidos<span class="required">*</span></label>
+                  <div class="col-lg-10">
+                      <input class="form-control" id="inputName" name="inputName" minlength="5" type="text" required=""/>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="inputMail" class="control-label col-lg-2">e-mail<span class="required">*</span></label>
+                  <div class="col-lg-10">
+                      <input class="form-control" id="inputMail" type="email" name="inputMail" minlength="5" />
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="inputPassword" class="control-label col-lg-2">Contraseña<span class="required">*</span></label>
+                  <div class="col-lg-10">
+                      <input class="form-control" id="inputPassword" type="password" name="inputPassword" />
+                  </div>
+              </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" form="formNewUser">Añadir</button>
+      </div>
+    </div>
+  </div>
 </div>
