@@ -2,9 +2,36 @@ $(document).ready(function() {
     var adminLogged = $('.user-dropdown').length > 0;
 
     $('#content-main .wrapper').load('sections/sectionProjectTable.html', function() {
-        if (!adminLogged) {
-            $(".projectActions").addClass("hideToken");
-        }
+        $.ajax({
+            url: 'http://www.trianasat.com/datosjson/proyectos.json',
+            type: "GET",
+            cache: false,
+            success: function(root) {
+                var projects = root._embedded.proyectos;
+
+                var newProjectsRows = "";
+
+                $.each(projects, function(i, project) {
+                    newProjectsRows += '<tr token=' + project.token + '><td>' + project.nombre + '</td><td>FALLA</td><td>FALTA</td>' +
+                        '<td>' + project.localidad + '</td><td class="projectActions"><div class="btn-group">' +
+                        '<a class="btn btn-success" href="infoProyecto.html"><i class="icon_check_alt2"></i></a>' +
+                        '<a class="btn btn-primary btnToken" token="123456789a" href="#" data-target="#modalToken" data-toggle="modal">' +
+                        '<i class="icon_info"></i></a></div></td><td class="projectActions">' +
+                        '<input name="projectSelected" class="rememberProject" type="checkbox" name="options" paco="lolo" autocomplete="off"></td></tr>';
+                });
+
+                $('.table-projects tbody').append(newProjectsRows);
+
+                if (!adminLogged) {
+                    $(".projectActions").addClass("hideToken");
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert('error');
+            }
+        });
+
+
     });
 
     // Genera un código QR con el token del proyecto seleccionado
@@ -43,7 +70,8 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('click', '#hola', function(){
-      alert($('.rememberProject:checked').attr('paco'));
+    //TODO HAY QUE BORRAR ESTO
+    $(document).on('click', '#hola', function() {
+        alert($('.rememberProject:checked').attr('paco'));
     })
 });
