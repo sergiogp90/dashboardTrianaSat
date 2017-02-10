@@ -1,5 +1,6 @@
 var actualMenuSelected;
 var isMobile;
+var projectToken;
 
 // Cierra el menú lateral
 function closeSideBar(){
@@ -17,7 +18,27 @@ function checkScreenSize(){
     }
 }
 
+function getUrlVars(){
+
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+    for(var i = 0; i < hashes.length; i++){
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+
+    if(typeof window.history.pushState == 'function') {
+        window.history.pushState({}, "Hide", "file:///C:/Users/sguerrero/Desktop/dashboardTrianaSat/Sergio/Dashboard%20TrianaSat/publicIndex.html");
+    }
+
+    return vars;
+}
+
 $(document).ready(function(){
+    var variables = getUrlVars();
+
     // Se comprueba el tamaño del dispositivo
     checkScreenSize();
 
