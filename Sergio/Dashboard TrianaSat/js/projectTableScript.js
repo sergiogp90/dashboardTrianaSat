@@ -2,7 +2,6 @@ $(document).ready(function() {
     var adminLogged = $('.user-dropdown').length > 0;
 
     $('#content-main .wrapper').load('sections/sectionProjectTable.html', function() {
-
         var newProjectsRows = "";
 
         $.ajax({
@@ -15,10 +14,10 @@ $(document).ready(function() {
                 var newProjectsRows = "";
 
                 $.each(projects, function(i, project) {
-                    newProjectsRows += '<tr token=' + project.token + '><td>' + project.nombre + '</td><td>'+project.organizacion.nombre+'</td>'+
+                    newProjectsRows += '<tr token=' + project.token + '><td>' + project.nombre + '</td><td>' + project.organizacion.nombre + '</td>' +
                         '<td>FALTA AÑADIR</td><td>' + project.localidad + '</td><td class="projectActions"><div class="btn-group">' +
                         '<a class="btn btn-success" href="infoProyecto.html"><i class="icon_check_alt2"></i></a>' +
-                        '<a class="btn btn-primary btnToken" token="'+ project.token +'" href="#" data-target="#modalToken" data-toggle="modal">' +
+                        '<a class="btn btn-primary btnToken" token="' + project.token + '" href="#" data-target="#modalToken" data-toggle="modal">' +
                         '<i class="icon_info"></i></a></div></td><td class="projectActions">' +
                         '<input name="projectSelected" class="rememberProject" type="checkbox" name="options" paco="lolo" autocomplete="off"></td></tr>';
                 });
@@ -63,26 +62,47 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('click', "tr:not(tr:first-child)", function(){
+    // Abre el dashboard para el proyecto seleccionado.
+    $(document).on('click', "tr:not(tr:first-child)", function() {
         var token = $(this).attr('token');
 
-        window.location = 'publicIndex.html?token='+token;
+        window.location = 'publicIndex.html?token=' + token;
     });
 
     /*script que usan los modal al pulsar en siguiente*/
     $('a[title]').tooltip();
 
-    $(document).on("click", ".cambiarSiguiente", function(){
-      $(".two").parents("li").addClass("active");
-      $(".one").parents("li").removeClass("active");
-
-
+    $(document).on("click", ".cambiarSiguiente", function() {
+        $(".two").parents("li").addClass("active");
+        $(".one").parents("li").removeClass("active");
     });
 
-    $(document).on("click", ".cambiarTercera", function(){
-      $(".three").parents("li").addClass("active");
-      $(".two").parents("li").removeClass("active");
+    $(document).on("click", ".cambiarTercera", function() {
+        $(".three").parents("li").addClass("active");
+        $(".two").parents("li").removeClass("active");
     });
     /*fin script modal*/
+
+    $(document).on("click", ".guardarOrganizacion", function() {
+        var newOrg = {
+            nombre: $('#nombreOrganizacion').val()
+        };
+
+        $.ajax({
+            url: 'http://trianasat2-salesianostriana.rhcloud.com/organizaciones',
+            type: "POST",
+            cache: false,
+            crossDomain: true,
+            data: JSON.stringify(newOrg),
+            success: function(root) {
+                alert('org registrada');
+            },
+            error: function(xhr, status, error) {
+              console.log(xhr);
+              console.log(status);
+              console.log(error);
+            }
+        });
+    });
 
 });
