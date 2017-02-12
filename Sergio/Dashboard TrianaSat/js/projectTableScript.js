@@ -69,4 +69,20 @@ $(document).ready(function() {
         window.location = 'publicIndex.html?token='+token;
     });
 
+    /*script que usan los modal al pulsar en siguiente*/
+    $('a[title]').tooltip();
+
+    $(document).on("click", ".cambiarSiguiente", function(){
+      $(".two").parents("li").addClass("active");
+      $(".one").parents("li").removeClass("active");
+
+
+    });
+
+    $(document).on("click", ".cambiarTercera", function(){
+      $(".three").parents("li").addClass("active");
+      $(".two").parents("li").removeClass("active");
+    });
+    /*fin script modal*/
+
 });

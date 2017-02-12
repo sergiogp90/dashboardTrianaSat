@@ -29,9 +29,12 @@ function getUrlVars(){
         vars[hash[0]] = hash[1];
     }
 
+    /* TODO activar cuando esté alojada en el dominio, cambiando la URL por la real.
+    Esto sirve para ocultar los parametros de la url
+    
     if(typeof window.history.pushState == 'function') {
         window.history.pushState({}, "Hide", "file:///C:/Users/sguerrero/Desktop/dashboardTrianaSat/Sergio/Dashboard%20TrianaSat/publicIndex.html");
-    }
+    }*/
 
     return vars;
 }
