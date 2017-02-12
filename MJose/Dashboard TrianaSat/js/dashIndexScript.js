@@ -1,5 +1,6 @@
 var actualMenuSelected;
 var isMobile;
+var projectToken;
 
 // Cierra el menú lateral
 function closeSideBar(){
@@ -17,7 +18,30 @@ function checkScreenSize(){
     }
 }
 
+function getUrlVars(){
+
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+    for(var i = 0; i < hashes.length; i++){
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+
+    /* TODO activar cuando esté alojada en el dominio, cambiando la URL por la real.
+    Esto sirve para ocultar los parametros de la url
+
+    if(typeof window.history.pushState == 'function') {
+        window.history.pushState({}, "Hide", "file:///C:/Users/sguerrero/Desktop/dashboardTrianaSat/Sergio/Dashboard%20TrianaSat/publicIndex.html");
+    }*/
+
+    return vars;
+}
+
 $(document).ready(function(){
+    var variables = getUrlVars();
+
     // Se comprueba el tamaño del dispositivo
     checkScreenSize();
 
@@ -62,13 +86,20 @@ $(document).ready(function(){
         }
 
         $.ajax({
-            cache: false,
-            type: "GET",
             url: photosURL,
+            type: "GET",
+            cache: false,
+
           success: function(data){
-            $.each(data.fotos, function (i, foto) {
+            var listaFotos = data._embedded.timelapse;
+
+            $.each(listaFotos, function (i, foto) {
+
+                var fechaTraida = foto.fecha;
+                var day = moment(fechaTraida).format('DD/MM/YYYY HH:mm:ss');
+
                 var newImageHtml = '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail">'+
-                '<img class="img-responsive" src="'+data.fotos[i].url+'" alt=""></a>'+
+                '<img class="img-responsive" src="'+foto.foto+'" alt="" fecha="'+day+'"></a>'+
                 '<button class="js-button btn btn-secondary-outline btn-expand center-block" data-toggle="modal" data-target="#modalPicture"'+
                 ' type="button" value="Expand photo" role="button"><i class="fa fa-eye" aria-hidden="true"></i></button></div>';
 
