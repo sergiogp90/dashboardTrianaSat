@@ -646,15 +646,11 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
   .timelapse-menu{
     display: none;
   };
-}
 
-/* Small devices (tablets, 768px and up) */
-@media (max-width:500px) {
-  #iconoAcceder{
+  #tooltip{
+    display: none;
   };
 }
-
-
 
 /* bootstrape editor*/
  #editor {
@@ -5367,3 +5363,52 @@ li.active span.round-tabs.five {
     }
 }
 /*fin estilo modals*/
+
+/* DISEÑO DEL TOOLTIP*/
+#tooltip {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  top: 500px;
+  border: solid 2px #eee;
+  border-radius: 12px;
+  background-color: #ffffff;
+  font-weight: bold;
+  color: #000000;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+  padding: 10px;
+  z-index: 1000;
+  margin-left: 5%;
+  margin-top: 25%;
+  text-align: center;
+}
+
+.loadersmall {
+  border: 5px solid #B3B3B3;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  border-top: 5px solid rgb(0,136,204);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  position: relative;
+  margin: 0;
+  top: 50%;
+  left: 37%;
+  margin-top: 5%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* FIN */
