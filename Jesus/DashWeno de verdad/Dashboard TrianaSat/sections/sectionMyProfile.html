@@ -1,0 +1,148 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="page-header cabecera"><i class="fa fa-user cabecera"></i> Datos del usuario</h3>
+
+            <div class="tabbable-panel">
+                <div class="tabbable-line">
+                    <ul class="nav nav-tabs panel-heading">
+                        <li class="active">
+                            <a href="#tabEditProfile" data-toggle="tab">
+                                <i class="fa fa-edit"></i> Editar datos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tabUserList" data-toggle="tab">
+                                <i class="fa fa-group"></i> Usuarios asociados
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <!--pestaña tabla-->
+                        <div class="tab-pane active" id="tabEditProfile">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <section class="panel">
+                                        <div class="panel-body">
+                                            <div class="form">
+                                                <form class="form-validate form-horizontal" id="formEditProfile" method="get" action="">
+                                                    <div class="form-group">
+                                                        <label for="inputName" class="control-label col-lg-2">Nombre y Apellidos</label>
+                                                        <div class="col-lg-10">
+                                                            <input class="form-control" id="inputName" name="inputName" minlength="5" type="text" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="inputMail" class="control-label col-lg-2">e-mail</label>
+                                                        <div class="col-lg-10">
+                                                            <input class="form-control" id="inputMail" type="email" name="inputMail" minlength="5" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="inputNewPassword" class="control-label col-lg-2">Nueva contraseña</label>
+                                                        <div class="col-lg-10">
+                                                            <input class="form-control" id="inputNewPassword" type="password" name="inputNewPassword" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputRepeatNewPassword" class="control-label col-lg-2">Confirmar nueva contraseña</label>
+                                                        <div class="col-lg-10">
+                                                            <input class="form-control" id="inputRepeatNewPassword" type="password" name="inputRepeatNewPassword" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-lg-offset-2 col-lg-10">
+                                                            <button class="btn btn-primary" type="submit">Guardar</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FIN PESTAÑA EDITAR DATOS -->
+
+                        <!-- PESTAÑA TABLA USUARIOS ASOCIADOS -->
+                        <div class="tab-pane" id="tabUserList">
+                            <div class="row">
+                                <button class="fab" data-toggle="modal" data-target="#modalNewUser">+</button>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <section class="panel">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Nombre</th>
+                                                        <th>Email</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Table cell</td>
+                                                        <td>Table cell</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalNewUser" tabindex="-1" role="dialog" aria-labelledby="modalNewUserLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalNewUserLabel">Nuevo usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+      </div>
+      <div class="modal-body">
+          <form class="form-validate form-horizontal" id="formNewUser" method="POST" action="">
+              <div class="form-group">
+                  <label for="inputName" class="control-label col-lg-2">Nombre y Apellidos<span class="required">*</span></label>
+                  <div class="col-lg-10">
+                      <input class="form-control" id="inputName" name="inputName" minlength="5" type="text" required=""/>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="inputMail" class="control-label col-lg-2">e-mail<span class="required">*</span></label>
+                  <div class="col-lg-10">
+                      <input class="form-control" id="inputMail" type="email" name="inputMail" minlength="5" />
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="inputPassword" class="control-label col-lg-2">Contraseña<span class="required">*</span></label>
+                  <div class="col-lg-10">
+                      <input class="form-control" id="inputPassword" type="text" name="inputPassword" />
+                  </div>
+              </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary" form="formNewUser">Añadir</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="js/scriptLogin.js">
+
+</script>
