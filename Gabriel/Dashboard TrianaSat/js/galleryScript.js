@@ -39,9 +39,7 @@ $(document).ready(function() {
        if(numSeleccionadas>4){
            // BotÃ³n tuit forbidden
            console.log("Llevas 4 o mÃ¡s, anular botÃ³n twitter");
-           console.log("quito no activo");
            $("#aux").removeClass('notactive');
-           console.log("Añado");
            $("#aux").toggleClass('notactive');
            //$("#aux").css('cursor','no-allowed');
            //$("#aux").prop( "disabled", true );
