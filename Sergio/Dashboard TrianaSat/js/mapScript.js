@@ -16,6 +16,10 @@ function refreshData(){
           strokeWeight: 4
         });
 
+        var estadoBateria = coordenadas[coordenadas.length-1].estado_bateria;
+        $('#bateria').text(estadoBateria+"%");
+
+
         var infowindow = new google.maps.InfoWindow();
 
         for (var i=0; i < flightPath.getPath().getLength(); i++){
@@ -73,5 +77,34 @@ function initMap() {
 $(document).ready(function(){
     $(document).on('click', '#refreshSection', function(){
         refreshData();
+    });
+
+    $.ajax({
+        cache: false,
+        type: "GET",
+        url: 'http://trianasat2-salesianostriana.rhcloud.com/datossensores',
+        success: function(data) {
+            var datosSensores = data._embedded.datossensores;
+                var fecha_datosSens = moment(datosSensores.fecha).format('DD/MM/YYYY HH:mm:ss');
+                var altitud_datosSens = datosSensores.altitud;
+                var temperatura_datosSens = datosSensores.temperatura;
+                var presion_datosSens = datosSensores.presion;
+                var calidadDelAire_datosSens = datosSensores.calidad_aire;
+                var humedad_datosSens = datosSensores.humedad;
+
+                $('#altitud').text(altitud_datosSens);
+                $('#temperatura').text(temperatura_datosSens);
+                $('#humedad').text(humedad_datosSens);
+                $('#presion').text(presion_datosSens);
+                $('#calidadDelAire').text(calidadDelAire_datosSens);
+
+
+        },
+        error: function(data) {
+            alert("error ajax");
+            $.each(data, function(i) {
+                alert(data.text());
+            });
+        }
     });
 });

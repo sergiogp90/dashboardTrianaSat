@@ -19,9 +19,7 @@ function checkScreenSize() {
 }
 
 function getUrlVars() {
-
-    var vars = [],
-        hash;
+    var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 
     for (var i = 0; i < hashes.length; i++) {
@@ -41,7 +39,9 @@ function getUrlVars() {
 }
 
 $(document).ready(function() {
-    var variables = getUrlVars();
+    var getParameters = getUrlVars();
+
+    alert(getParameters);
 
     // Se comprueba el tamaño del dispositivo
     checkScreenSize();
@@ -56,7 +56,7 @@ $(document).ready(function() {
     actualMenuSelected = $('#goMapa').closest('li');
     actualMenuSelected.toggleClass('active');
 
-    $('.main-wrapper').load("sections/sectionMapa.html");
+    $('.main-wrapper').load("sections/sectionMapa.html?token=");
 
     /******** EVENTOS CLICK MENÚ LATERAL ********/
 
@@ -77,7 +77,7 @@ $(document).ready(function() {
     });
 
     $('#goGallery').on('click', function() {
-        var photosURL = 'http://www.trianasat.com/datosjson/fotos.json';
+        var photosURL = 'http://trianasat2-salesianostriana.rhcloud.com/timelapse';
         var newCols = "";
 
         $('.main-wrapper').load("sections/sectionGallery.html");
@@ -87,16 +87,22 @@ $(document).ready(function() {
         }
 
         $.ajax({
-            cache: false,
+
             type: "GET",
             url: photosURL,
+            beforeSend: function(xhr){
+              xhr.setRequestHeader('accept','application/json');
+            },
             success: function(data) {
+              alert('success');
+
                 var listaFotos = data._embedded.timelapse;
 
                 $.each(listaFotos, function(i, foto) {
 
                     var photoTimestamp = foto.fecha;
                     var formattedDate = moment(photoTimestamp).format('DD/MM/YYYY HH:mm:ss');
+
 
                     var newImageHtml = '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail">'+
                     '<img class="img-responsive" src="'+foto.foto+'" alt="" fecha="'+formattedDate+'"></a>'+
@@ -111,11 +117,18 @@ $(document).ready(function() {
                 setPagination();
                 updateGalleryItems();
             },
-            error: function(data) {
+            error: function(jqXHR, textStatus, errorThrown) {
                 alert("error ajax");
-                $.each(data, function(i) {
+                console.log("Error ajax en la petición timelapse");
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
+
+
+
+                /*$.each(data, function(i) {
                     alert(data.text());
-                });
+                });*/
             }
         });
     });
@@ -133,4 +146,18 @@ $(document).ready(function() {
 
         actualMenuSelected.removeClass('active');
     });
+
+    /*script que usan los modal al pulsar en siguiente*/
+    $('a[title]').tooltip();
+
+    $(document).on("click", ".cambiarSiguiente", function() {
+        $(".two").parents("li").addClass("active");
+        $(".one").parents("li").removeClass("active");
+    });
+
+    $(document).on("click", ".cambiarTercera", function() {
+        $(".three").parents("li").addClass("active");
+        $(".two").parents("li").removeClass("active");
+    });
+    /*fin script modal*/
 });

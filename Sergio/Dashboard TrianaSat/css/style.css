@@ -5167,9 +5167,9 @@ p.narrow {
     z-index: 1;
 }
 
-.nav-tabs>li.active>a,
-.nav-tabs>li.active>a:hover,
-.nav-tabs>li.active>a:focus {
+.org>li.active>a,
+.org>li.active>a:hover,
+.org>li.active>a:focus {
     color: #555555;
     cursor: default;
     /* background-color: #ffffff; */
@@ -5246,11 +5246,11 @@ li.active span.round-tabs.five {
     color: #999;
 }
 
-.nav-tabs>li.active>a span.round-tabs {
+.org >li.active>a span.round-tabs {
     background: #fafafa;
 }
 
-.nav-tabs>li {
+.org >li {
     width: 40%;
 }
 .org >li {
@@ -5269,7 +5269,7 @@ li.active span.round-tabs.five {
   transition:0.2s ease-in-out;
 }*/
 
-.nav-tabs>li:after {
+.org >li:after {
     content: " ";
     position: absolute;
     left: 45%;
@@ -5280,7 +5280,7 @@ li.active span.round-tabs.five {
     transition: 0.1s ease-in-out;
 }
 
-.nav-tabs>li.active:after {
+.org >li.active:after {
     content: " ";
     position: absolute;
     left: 45%;
@@ -5291,7 +5291,7 @@ li.active span.round-tabs.five {
     border-bottom-color: #ddd;
 }
 
-.nav-tabs>li a {
+.org >li a {
     width: 70px;
     height: 70px;
     margin: 20px auto;
@@ -5299,7 +5299,7 @@ li.active span.round-tabs.five {
     padding: 0;
 }
 
-.nav-tabs>li a:hover {
+.org >li a:hover {
     background: transparent;
 }
 
@@ -5348,12 +5348,12 @@ li.active span.round-tabs.five {
     .tab-content .head {
         font-size: 20px;
     }
-    .nav-tabs>li a {
+    .org >li a {
         width: 50px;
         height: 50px;
         line-height: 50px;
     }
-    .nav-tabs>li.active:after {
+    .org >li.active:after {
         content: " ";
         position: absolute;
         left: 35%;
