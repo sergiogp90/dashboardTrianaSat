@@ -1,4 +1,4 @@
-function getUrlVars() {
+function getUrlParams() {
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
 
@@ -11,8 +11,10 @@ function getUrlVars() {
     /* TODO activar cuando esté alojada en el dominio, cambiando la URL por la real.
     Esto sirve para ocultar los parametros de la url
 
+    var ruta = adminLogged ? "tablaProyectosAdmin.html" : "tablaProyectos.html";
+
     if(typeof window.history.pushState == 'function') {
-        window.history.pushState({}, "Hide", "file:///C:/Users/sguerrero/Desktop/dashboardTrianaSat/Sergio/Dashboard%20TrianaSat/publicIndex.html");
+        window.history.pushState({}, "Hide", "www.salesianos-triana.com/trianasat/dash/"+ruta);
     }*/
 
     return vars;
@@ -36,11 +38,11 @@ $(document).ready(function() {
         var urlProyectos;
 
         if(adminLogged){
-            var getParameters = getUrlVars();
+            var getParameters = getUrlParams();
             organizacionId = getParameters["orgId"];
             urlProyectos = 'http://trianasat2-salesianostriana.rhcloud.com/organizaciones/'+organizacionId+'/listaProyectos';
         }else{
-            urlProyectos = "http://www.trianasat.com/datosjson/proyectos.json";
+            urlProyectos = "http://trianasat2-salesianostriana.rhcloud.com/proyectos";
         }
 
         $.ajax({
@@ -51,20 +53,33 @@ $(document).ready(function() {
                 var projects = root._embedded.proyectos;
 
                 var newProjectsRows = "";
+                var projectList = "";
 
                 $.each(projects, function(i, project) {
-                    newProjectsRows += '<tr token=' + project.token + '><td>' + project.nombre + '</td><td>' + project.organizacion.nombre + '</td>' +
+                    newProjectsRows += '<tr token=' + project.token + '><td>' + project.nombre + '</td><td class="orgColumn">FALTA ORG</td>' +
                         '<td>FALTA AÑADIR</td><td>' + project.localidad + '</td><td class="projectActions"><div class="btn-group">' +
                         '<a class="btn btn-success" href="infoProyecto.html"><i class="icon_check_alt2"></i></a>' +
-                        '<a class="btn btn-primary btnToken" token="' + project.token + '" href="#" data-target="#modalToken" data-toggle="modal">' +
-                        '<i class="icon_info"></i></a></div></td><td class="projectActions">' +
-                        '<input name="projectSelected" class="rememberProject" type="checkbox" name="options" paco="lolo" autocomplete="off"></td></tr>';
+                        '<a class="btn btn-primary btnToken" data-target="#modalToken" data-toggle="modal">' +
+                        '<i class="icon_info" data-target="#modalToken" data-toggle="modal"></i></a></div></td><td class="projectActions">' +
+                        '<input name="projectSelected" class="rememberProject" type="checkbox" name="options" autocomplete="off"></td></tr>';
+
+                    if(adminLogged){
+                        projectList += '<li token="'+ project.token +'"><a><span class="label label-primary"><i class="icon_folder-alt">'+
+                        '</i></span> '+ project.nombre +'</a></li>';
+                    }
                 });
 
                 $('.table-projects tbody').append(newProjectsRows);
 
                 if (!adminLogged) {
                     $(".projectActions").addClass("hideToken");
+                }else{
+                    $('.orgColumn').addClass("hideToken");
+
+                    projectList += '<li><a href="tablaProyectosAdmin.html?orgId='+ organizacionId +'">'+
+                    'Ver todos los proyectos</a></li>';
+
+                    $('.projectListMenu').append(projectList);
                 }
             },
             error: function(xhr, ajaxOptions, thrownError) {
@@ -75,24 +90,25 @@ $(document).ready(function() {
 
     // Genera un código QR con el token del proyecto seleccionado
     // y lo muestra en un modal
-    $(document).on('click', '.btnToken', function() {
+    $(document).on('click', '.btnToken, .btnToken i', function(event) {
+        event.stopImmediatePropagation();
+
         $('#qrcode').empty();
 
-        var token = $(this).attr('token');
-        $('#modalToken p:nth-child(3)').text(token);
+        var token = $(this).closest('tr').attr('token');
 
         new QRCode("qrcode").makeCode(token);
     });
 
-    // the selector will match all input controls of type :checkbox
-    // and attach a click event handler
-    $(document).on('click', ".rememberProject", function() {
-        // in the handler, 'this' refers to the box clicked on
+    // Gestiona el click sobre los checkboxs de recordar proyecto, para activar
+    // sólo uno a la vez.
+    $(document).on('click', ".rememberProject", function(event) {
+        event.stopImmediatePropagation();
+
         var box = $(this);
         if (box.is(":checked")) {
             var group = "input:checkbox[name='" + box.attr("name") + "']";
-            // the checked state of the group/box on the other hand will change
-            // and the current value is retrieved using .prop() method
+
             $(group).prop("checked", false);
             $(group).next("span").css('color', 'red');
             box.prop("checked", true);
@@ -101,26 +117,21 @@ $(document).ready(function() {
         }
     });
 
-    // Abre el dashboard para el proyecto seleccionado.
-    $(document).on('click', "tr:not(tr:first-child)", function() {
-        var token = $(this).attr('token');
+    // Abre el dashboard para el proyecto seleccionado de la tabla.
+    $(document).on('click', "tr:not(tr:first-child) td", function() {
+        var token = $(this).closest('tr').attr('token');
+        var redirectionUrl = adminLogged ? "adminIndex.html" : "publicIndex.html";
 
-        window.location = 'publicIndex.html?token=' + token;
+        window.location = redirectionUrl+'?token=' + token;
     });
 
-    /*
-    "nombre":"Daniel",
-	"apellidos":"Blázquez Morlano",
-	"email":"dani@email.com",
-	"password":"parato2017",
-	"administrador":0,
-	"organizacion": "http://localhost:8090/organizaciones/1"
-  */
+    // Gestiona el alta de organización.
     $(document).on("click", ".guardarOrganizacion", function() {
         var rutaProyectosOrg = "";
 
         var newOrg = {
-            "nombre": $('#nombreOrganizacion').val()
+            "nombre": $('#nombreOrganizacion').val(),
+            "descripcion": $('#descripcionOrganizacion').val()
         };
 
         $.ajax({
@@ -165,63 +176,56 @@ $(document).ready(function() {
         });
     });
 
-      /*script que usan los modal al pulsar en siguiente*/
-      $('a[title]').tooltip();
+    /*script que usan los modal al pulsar en siguiente*/
+    $('a[title]').tooltip();
 
-      $(document).on("click", ".cambiarSiguiente", function() {
-          $(".two").parents("li").addClass("active");
-          $(".one").parents("li").removeClass("active");
+    $(document).on("click", ".cambiarSiguiente", function() {
+        $(".two").parents("li").addClass("active");
+        $(".one").parents("li").removeClass("active");
+    });
+
+    $(document).on("click", ".cambiarTercera", function() {
+        $(".three").parents("li").addClass("active");
+        $(".two").parents("li").removeClass("active");
+    });
+    /*fin script modal*/
+
+    // Gestiona la creación de un nuevo proyecto.
+    $(document).on("click", ".guardarProyecto", function(){
+      var cryptToken = guid();
+
+      var nuevoProyecto = {
+          "descripcion": $("#descripcionProyecto").val(),
+          "localidad": "los palacios",
+          "nombre": $("#nombreProyecto").val(),
+          "token": cryptToken,
+          "organizacion": "http://trianasat2-salesianostriana.rhcloud.com/organizaciones/"+organizacionId,
+          "api_key": $("#api_key").val(),
+          "api_secret": $("#api_secret").val(),
+          "access_token": $("#access_token").val(),
+          "access_token_secret": $("#access_token_secret").val()
+      };
+
+      $.ajax({
+          url: 'http://trianasat2-salesianostriana.rhcloud.com/proyectos',
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(nuevoProyecto),
+          success: function(root) {
+              alert('Registrado proyecto correctamente.');
+              window.location = 'adminIndex.html?tokenUsuario=blabla&tokenProyecto='+cryptToken;
+          },
+          error: function(xhr, status, error) {
+            console.log(xhr);
+            console.log(status);
+            console.log(error);
+          }
       });
+    });
 
-      $(document).on("click", ".cambiarTercera", function() {
-          $(".three").parents("li").addClass("active");
-          $(".two").parents("li").removeClass("active");
-      });
-      /*fin script modal*/
-
-
-      /*
-      "descripcion":"Proyecto de sonda meteorológica para la Feria FP.",
-      	"localidad":"Sevilla",
-      	"nombre":"TrianaSat",
-      	"token":"asdfg435cdghs79846h741asdfg435cdg",
-      	"organizacion":"http://localhost:8090/organizaciones/1",
-      	"api_key":"sdfghsjk5d4fh6hf4",
-      	"api_secret":"ER56DF4HAged68h4d6h",
-      	"access_token":"dfh654df6h4s98h4a",
-      	"access_token_secret":"sd6g54asd8g47a654gha98h"
-      */
-      $(document).on("click", ".guardarProyecto", function(){
-        var cryptToken = guid();
-        alert(cryptToken);
-
-        var nuevoProyecto = {
-            "descripcion": $("#descripcionProyecto").val(),
-            "localidad": "los palacios",
-            "nombre": $("#nombreProyecto").val(),
-            "token": cryptToken,
-            "organizacion": "http://trianasat2-salesianostriana.rhcloud.com/organizaciones/"+organizacionId,
-            "api_key": $("#api_key").val(),
-            "api_secret": $("#api_secret").val(),
-            "access_token": $("#access_token").val(),
-            "access_token_secret": $("#access_token_secret").val()
-        };
-
-        $.ajax({
-            url: 'http://trianasat2-salesianostriana.rhcloud.com/proyectos',
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(nuevoProyecto),
-            success: function(root) {
-                alert('Registrado proyecto correctamente.');
-                window.location = 'adminIndex.html?tokenUsuario=blabla&tokenProyecto='+cryptToken;
-            },
-            error: function(xhr, status, error) {
-              console.log(xhr);
-              console.log(status);
-              console.log(error);
-            }
-        });
-
-      });
+    // Evento click sobre los proyectos del menú superior.
+    $(document).on('click', '.projectListMenu li:not(:last-child)', function(){
+        var token = $(this).attr('token');
+        window.location = 'adminIndex.html?tokenUsuario=blabla&tokenProyecto='+token;
+    });
 });

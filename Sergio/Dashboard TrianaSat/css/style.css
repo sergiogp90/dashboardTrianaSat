@@ -542,6 +542,7 @@ a.logo {
     color: #fed189;
     float: left;
     margin-top: 15px;
+    cursor: pointer;
 }
 
 a.logo:hover, a.logo:focus {
@@ -5410,5 +5411,8 @@ li.active span.round-tabs.five {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+/* FIN DISEÑO DEL TOOLTIP*/
 
-/* FIN */
+.projectListMenu li{
+    cursor: pointer;
+}

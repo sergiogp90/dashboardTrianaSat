@@ -1,5 +1,5 @@
   <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -24,7 +24,7 @@
     <section id="container" class="">
         <!--header start-->
         <header class="header dark-bg">
-            <a href="#" class="logo">Triana<span class="lite">Sat</span></a>
+            <a class="logo">Triana<span class="lite">Sat</span></a>
 
             <!-- Opciones barra superior derecha (LOGIN) -->
             <div class="top-nav notification-row">
@@ -34,17 +34,8 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="icon_folder-alt"></i>
                         </a>
-                        <ul class="dropdown-menu extended notification">
+                        <ul class="dropdown-menu extended notification projectListMenu">
                             <div class="notify-arrow notify-arrow-blue"></div>
-
-                            <li>
-                                <a href="#">
-                                    <span class="label label-primary"><i class="icon_folder-alt"></i></span> TrianaSAT
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tablaProyectos.html">Ver todos los proyectos</a>
-                            </li>
                         </ul>
                     </li>
                     <!-- alert notification end-->
@@ -59,14 +50,11 @@
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
-                            <li class="eborder-top">
-                                <a href="profile.html"><i class="icon_profile"></i> Mi Perfil</a>
-                            </li>
                             <li>
                                 <a data-toggle="modal" data-target="#modalNewProject" href=""><i class="icon_plus"></i> Nuevo Proyecto</a>
                             </li>
                             <li>
-                                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                <a href="tablaProyectos.html"><i class="icon_key_alt"></i> Log Out</a>
                             </li>
                         </ul>
                     </li>
@@ -92,12 +80,11 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modalTokenLabel">Token del proyecto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalTokenLabel">Token del proyecto</h4>
                 </div>
                 <div class="modal-body">
                     <div id="qrcode"></div>
-                    <p>Si lo desea, también lo tiene en texto:</p>
-                    <p>Token</p>
                 </div>
             </div>
         </div>
@@ -105,22 +92,19 @@
     <!--fin modal token-->
 
     <!--MODAL NEW PROJECT (CON APIS DE TWITTER)-->
-    <!-- Modal registro-->
     <div class="modal fade bs-modal-sm" id="modalNewProject" role="dialog" aria-labelledby="modalNewProjectLabel" aria-hidden="true">
-        <!--inicio-->
         <section style="">
             <div class="container">
                 <div class="row">
                     <div class="board">
-                        <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
                         <div class="board-inner">
                             <ul class="nav org nav-tabs" id="myTab">
                                 <div class="liner"></div>
                                 <li class="active">
                                     <a href="#home" data-toggle="tab" title="proyect">
                                         <span class="round-tabs one">
-                                                    <i class="glyphicon glyphicon-file"></i>
-                                            </span>
+                                            <i class="glyphicon glyphicon-file"></i>
+                                        </span>
                                     </a>
                                 </li>
 
@@ -152,7 +136,8 @@
                                             <textarea class="form-control" rows="1" id="descripcionProyecto" placeholder="Introduzca una breve descripción del proyecto:"></textarea>
                                         </div>
                                         <div class="row pull-right" style="margin-right:4px;">
-                                            <button class="btn btn-success cambiarSiguiente" href="#profile" data-toggle="tab" type="submit">Siguiente<i class="	glyphicon glyphicon-chevron-right"></i></button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                                            <button class="btn btn-success cambiarSiguiente" href="#profile" data-toggle="tab" type="submit">Siguiente<i class="glyphicon glyphicon-chevron-right"></i></button>
                                         </div>
                                     </form>
                                 </div>
@@ -175,26 +160,20 @@
                                           <input type="text" class="form-control" id="access_token_secret" placeholder="Access token secret">
                                       </div>
                                       <div class="row pull-right" style="margin-right:4px;">
-                                          <button class="btn btn-success guardarProyecto" href="#profile" data-dismiss="modal" data-toggle="tab" type="submit">Guardar<i class="	glyphicon glyphicon-save"></i></button>
+                                          <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                                          <button class="btn btn-success guardarProyecto" href="#profile" data-dismiss="modal" data-toggle="tab" type="submit">Guardar<i class="glyphicon glyphicon-save"></i></button>
                                       </div>
                                   </form>
                               </div>
-
                             </div>
-
                             <div class="clearfix"></div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </section>
-        <!--fin-->
-
     </div>
-    <!--fin modal-->
     <!--FIN MODAL NEW PROJECT-->
-
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
