@@ -26,8 +26,6 @@ $(document).ready(function(){
             console.log(errorThrown);
         }
     });*/
-
-
     //tabla datos(no borrar)
     $.ajax({
         cache: false,

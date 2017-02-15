@@ -41,8 +41,6 @@ function getUrlVars() {
 $(document).ready(function() {
     var getParameters = getUrlVars();
 
-    alert(getParameters);
-
     // Se comprueba el tamaño del dispositivo
     checkScreenSize();
 
