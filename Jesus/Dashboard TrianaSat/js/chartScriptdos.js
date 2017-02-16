@@ -2,27 +2,37 @@
 $(document).ready(function(){
 
 //grafica 1
-$.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
+var fechaLista =[];
+var altura = [];
+//trianasat2-salesianostriana.rhcloud.com/datossensores
+$.getJSON("http://trianasat2-salesianostriana.rhcloud.com/datossensores", function (json) {
   // will generate array with ['Monday', 'Tuesday', 'Wednesday']
-  var altura = json.altura;
-  var ejex = json.altura.map(function(item) {
-    return item.hora;
-  })
+  var raiz = json._embedded.datossensores;
+//  var altitud = json._embedded.datossensores;
+  console.log(json._embedded.datossensores[0]);
 
-  var ejeyuno = json.altura.map(function(item){
-    return item.metros;
-  })
+  $.each(raiz, function(i, dato) {
+    var fecha = dato.fecha;
+
+    var formattedDate = moment(fecha).format('HH:mm');
+    var altitud = dato.altitud;
+    //var formattedDate = moment(fechaAltura).format('DD/MM/YYYY HH:mm:ss');
+    fechaLista.push(formattedDate);
+    altura.push(parseInt(altitud));
+    ;
+  });
+
 
   var data = {
-    labels: ejex,
+    labels: fechaLista,
     datasets: [
     {
       label: "primero",
-      fillColor : "rgba(220,0,220,0.5)",
-      strokeColor : "rgba(0,220,0,1)",
-      pointColor : "rgba(220,0,220,1)",
-      pointStrokeColor : "#ffa",
-      data: ejeyuno
+      fillColor : "rgba(0,0,200,0.5)",
+      strokeColor : "rgba(0,220,200,1)",
+      pointColor : "rgba(220,100,220,1)",
+      pointStrokeColor : "#a0f",
+      data: altura
     }
 
     ]
@@ -33,7 +43,7 @@ $.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
   Chart.defaults.global.tooltipYPadding = 16;
   Chart.defaults.global.tooltipCornerRadius = 2;
   Chart.defaults.global.tooltipTitleFontStyle = "normal";
-  Chart.defaults.global.tooltipFillColor = "rgba(100,160,0,0.8)";
+  Chart.defaults.global.tooltipFillColor = "rgba(100,160,200,0.8)";
   Chart.defaults.global.animationEasing = "easeOutBounce";
   Chart.defaults.global.responsive = true;
   Chart.defaults.global.scaleLineColor = "black";
@@ -44,21 +54,28 @@ $.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
 
 
 //grafica 2
-
-
-$.getJSON("http://olalas.hol.es/datosJson/temperaturas.json", function (json) {
+$.getJSON("http://trianasat2-salesianostriana.rhcloud.com/datossensores", function (json) {
   // will generate array with ['Monday', 'Tuesday', 'Wednesday']
-  var altura = json.temperaturas;
-  var ejex = json.temperaturas.map(function(item) {
-    return item.date;
-  })
+  var fechaListaD= [];
+  var temperaturaLista = [];
+  var raiz = json._embedded.datossensores;
+//  var altitud = json._embedded.datossensores;
+  console.log(json._embedded.datossensores[0]);
 
-  var ejeyuno = json.temperaturas.map(function(item){
-    return item.temp;
-  })
+  $.each(raiz, function(i, dato) {
+    var fecha = dato.fecha;
+
+    var formattedDate = moment(fecha).format('HH:mm');
+    var temperatura = dato.temperatura;
+    //var formattedDate = moment(fechaAltura).format('DD/MM/YYYY HH:mm:ss');
+    fechaListaD.push(formattedDate);
+    temperaturaLista.push(parseInt(temperatura));
+
+  });
+
 
   var data = {
-    labels: ejex,
+    labels: fechaListaD,
     datasets: [
     {
       label: "primero",
@@ -66,7 +83,7 @@ $.getJSON("http://olalas.hol.es/datosJson/temperaturas.json", function (json) {
       strokeColor : "rgba(0,220,0,1)",
       pointColor : "rgba(220,0,220,1)",
       pointStrokeColor : "#ffa",
-      data: ejeyuno
+      data: temperaturaLista
     }
 
     ]
@@ -88,19 +105,28 @@ $.getJSON("http://olalas.hol.es/datosJson/temperaturas.json", function (json) {
 
 //grafica 3
 
-$.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
+$.getJSON("http://trianasat2-salesianostriana.rhcloud.com/datossensores", function (json) {
   // will generate array with ['Monday', 'Tuesday', 'Wednesday']
-  var altura = json.altura;
-  var ejex = json.altura.map(function(item) {
-    return item.hora;
-  })
+  var fechaListaE= [];
+  var presionLista = [];
+  var raiz = json._embedded.datossensores;
+//  var altitud = json._embedded.datossensores;
 
-  var ejeyuno = json.altura.map(function(item){
-    return item.metros;
-  })
+
+  $.each(raiz, function(i, dato) {
+    var fecha = dato.fecha;
+
+    var formattedDate = moment(fecha).format('HH:mm');
+    var presion = dato.presion;
+    //var formattedDate = moment(fechaAltura).format('DD/MM/YYYY HH:mm:ss');
+    fechaListaE.push(formattedDate);
+    presionLista.push(parseInt(presion));
+
+  });
+
 
   var data = {
-    labels: ejex,
+    labels: fechaListaE,
     datasets: [
     {
       label: "primero",
@@ -108,7 +134,7 @@ $.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
       strokeColor : "rgba(0,220,0,1)",
       pointColor : "rgba(220,0,220,1)",
       pointStrokeColor : "#ffa",
-      data: ejeyuno
+      data: presionLista
     }
 
     ]
@@ -130,19 +156,27 @@ $.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
 
 //grafica 4
 
-$.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
+$.getJSON("http://trianasat2-salesianostriana.rhcloud.com/datossensores", function (json) {
   // will generate array with ['Monday', 'Tuesday', 'Wednesday']
-  var altura = json.altura;
-  var ejex = json.altura.map(function(item) {
-    return item.hora;
-  })
+  var fechaListaA= [];
+  var calidad_aireLista = [];
+  var raiz = json._embedded.datossensores;
+//  var altitud = json._embedded.datossensores;
+  console.log(json._embedded.datossensores[0]);
 
-  var ejeyuno = json.altura.map(function(item){
-    return item.metros;
-  })
+  $.each(raiz, function(i, dato) {
+    var fecha = dato.fecha;
+
+    var formattedDate = moment(fecha).format('HH:mm');
+    var calidad_aire = dato.calidad_aire;
+    //var formattedDate = moment(fechaAltura).format('DD/MM/YYYY HH:mm:ss');
+    fechaListaA.push(formattedDate);
+    calidad_aireLista.push(parseInt(calidad_aire));
+  });
+
 
   var data = {
-    labels: ejex,
+    labels: fechaListaA,
     datasets: [
     {
       label: "primero",
@@ -150,11 +184,12 @@ $.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
       strokeColor : "rgba(0,220,0,1)",
       pointColor : "rgba(220,0,220,1)",
       pointStrokeColor : "#ffa",
-      data: ejeyuno
+      data: calidad_aireLista
     }
 
     ]
   };
+
 
   var ctxdos = document.getElementById("grafica4").getContext("2d");
   Chart.defaults.global.animationSteps = 50;
@@ -162,6 +197,57 @@ $.getJSON("http://olalas.hol.es/datosJson/altura.json", function (json) {
   Chart.defaults.global.tooltipCornerRadius = 2;
   Chart.defaults.global.tooltipTitleFontStyle = "normal";
   Chart.defaults.global.tooltipFillColor = "rgba(100,160,0,0.8)";
+  Chart.defaults.global.animationEasing = "easeOutBounce";
+  Chart.defaults.global.responsive = true;
+  Chart.defaults.global.scaleLineColor = "black";
+  Chart.defaults.global.scaleFontSize = 16;
+
+  var myChart = new Chart(ctxdos).Line(data);
+});
+
+//grafica 5
+
+$.getJSON("http://trianasat2-salesianostriana.rhcloud.com/datossensores", function (json) {
+  // will generate array with ['Monday', 'Tuesday', 'Wednesday']
+  var fechaListaH= [];
+  var humedadLista = [];
+  var raiz = json._embedded.datossensores;
+//  var altitud = json._embedded.datossensores;
+  console.log(json._embedded.datossensores[0]);
+
+  $.each(raiz, function(i, dato) {
+    var fecha = dato.fecha;
+
+    var formattedDate = moment(fecha).format('HH:mm');
+    var humedad = dato.humedad;
+    //var formattedDate = moment(fechaAltura).format('DD/MM/YYYY HH:mm:ss');
+    fechaListaH.push(formattedDate);
+    humedadLista.push(parseInt(humedad));
+  });
+
+
+  var data = {
+    labels: fechaListaH,
+    datasets: [
+    {
+      label: "primero",
+      fillColor : "rgba(220,40,50,0.5)",
+      strokeColor : "rgba(0,0,50,1)",
+      pointColor : "rgba(220,0,0,1)",
+      pointStrokeColor : "#f0a",
+      data: humedadLista
+    }
+
+    ]
+  };
+
+
+  var ctxdos = document.getElementById("grafica5").getContext("2d");
+  Chart.defaults.global.animationSteps = 50;
+  Chart.defaults.global.tooltipYPadding = 16;
+  Chart.defaults.global.tooltipCornerRadius = 2;
+  Chart.defaults.global.tooltipTitleFontStyle = "normal";
+  Chart.defaults.global.tooltipFillColor = "rgba(100,0,0,0.8)";
   Chart.defaults.global.animationEasing = "easeOutBounce";
   Chart.defaults.global.responsive = true;
   Chart.defaults.global.scaleLineColor = "black";

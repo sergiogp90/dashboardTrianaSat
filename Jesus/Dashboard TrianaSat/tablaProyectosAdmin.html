@@ -1,0 +1,189 @@
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tabla de proyectos en TrianaSat">
+    <meta name="author" content="Salesianos Triana">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>Listado de proyectos</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/elegant-icons-style.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="css/simplePagination.css" />
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- container section start -->
+    <section id="container" class="">
+        <!--header start-->
+        <header class="header dark-bg">
+            <a class="logo">Triana<span class="lite">Sat</span></a>
+
+            <!-- Opciones barra superior derecha (LOGIN) -->
+            <div class="top-nav notification-row">
+                <ul class="nav pull-right top-menu">
+
+                    <li id="alert_notificatoin_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="icon_folder-alt"></i>
+                        </a>
+                        <ul class="dropdown-menu extended notification projectListMenu">
+                            <div class="notify-arrow notify-arrow-blue"></div>
+                        </ul>
+                    </li>
+                    <!-- alert notification end-->
+                    <!-- user login dropdown start-->
+                    <li class="dropdown user-dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt="" src="img/avatar1_small.jpg">
+                            </span>
+                            <span class="username">Nombre Usuario</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <div class="log-arrow-up"></div>
+                            <li>
+                                <a data-toggle="modal" data-target="#modalNewProject" href=""><i class="icon_plus"></i> Nuevo Proyecto</a>
+                            </li>
+                            <li>
+                                <a href="tablaProyectos.html"><i class="icon_key_alt"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+                <!-- notificatoin dropdown end-->
+            </div>
+        </header>
+        <!--header end-->
+
+        <!--main content start-->
+        <section id="content-main">
+            <section class="wrapper">
+
+            </section>
+        </section>
+        <!--main content end-->
+    </section>
+    <!-- container section end -->
+
+    <!--modal token-->
+    <div id="modalToken" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="modalTokenLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalTokenLabel">Token del proyecto</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="qrcode"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--fin modal token-->
+
+    <!--MODAL NEW PROJECT (CON APIS DE TWITTER)-->
+    <div class="modal fade bs-modal-sm" id="modalNewProject" role="dialog" aria-labelledby="modalNewProjectLabel" aria-hidden="true">
+        <section style="">
+            <div class="container">
+                <div class="row">
+                    <div class="board">
+                        <div class="board-inner">
+                            <ul class="nav org nav-tabs" id="myTab">
+                                <div class="liner"></div>
+                                <li class="active">
+                                    <a href="#home" data-toggle="tab" title="proyect">
+                                        <span class="round-tabs one">
+                                            <i class="glyphicon glyphicon-file"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#profile" data-toggle="tab" title="twitter">
+                                        <span class="round-tabs two">
+                                               <i class="fa fa-twitter"></i>
+                                           </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="home">
+                                <h3 class="text-center"></i>Nuevo Proyecto</h3>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="nombreProyecto">Nombre proyecto</label>
+                                            <input type="text" class="form-control" id="nombreProyecto" placeholder="Ej. TrianaSat" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fechaLanzamiento">Fecha lanzamiento</label>
+                                            <input type="date" class="form-control" id="fechaLanzamiento" placeholder="Ej.:25/02/2017" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="descripcionProyecto">Descripcion</label>
+                                            <textarea class="form-control" rows="1" id="descripcionProyecto" placeholder="Introduzca una breve descripción del proyecto:"></textarea>
+                                        </div>
+                                        <div class="row pull-right" style="margin-right:4px;">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                                            <button class="btn btn-success cambiarSiguiente" href="#profile" data-toggle="tab" type="submit">Siguiente<i class="glyphicon glyphicon-chevron-right"></i></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile">
+                              <h3 class="text-center"></i>Twitter</h3>
+                              <h6 class="text-center">(Configure las api key si desea twittear elementos en el panel de administrador.)</h6>
+                              <div class="modal-body">
+                                  <form>
+                                      <div class="form-group">
+                                          <input type="text" class="form-control" id="api_key" placeholder="Api key">
+                                      </div>
+                                      <div class="form-group">
+                                          <input type="text" class="form-control" id="api_secret" placeholder="Api secret">
+                                      </div>
+                                      <div class="form-group">
+                                          <input type="text" class="form-control" id="access_token" placeholder="Access token">
+                                      </div>
+                                      <div class="form-group">
+                                          <input type="text" class="form-control" id="access_token_secret" placeholder="Access token secret">
+                                      </div>
+                                      <div class="row pull-right" style="margin-right:4px;">
+                                          <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Cerrar</button>
+                                          <button class="btn btn-success guardarProyecto" href="#profile" data-dismiss="modal" data-toggle="tab" type="submit">Guardar<i class="glyphicon glyphicon-save"></i></button>
+                                      </div>
+                                  </form>
+                              </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!--FIN MODAL NEW PROJECT-->
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="js/libraries/jquery.scrollTo.min.js"></script>
+    <script src="js/libraries/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="js/libraries/qrcode.min.js"></script>
+
+    <script src="js/themeScript.js" type="text/javascript"></script>
+    <script src="js/projectTableScript.js"></script>
+</body>
+
+</html>
