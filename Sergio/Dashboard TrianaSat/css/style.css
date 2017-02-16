@@ -73,11 +73,11 @@ table tr th { color: #688a7e;}
 }
 
 .lite{
-    color: #00a0df !important;
+    color: #FF0000 !important;
+    font-weight: 250;
 }
 
 /*login page*/
-
 .login-body {
     background-color: #f1f2f7;
 }
@@ -1099,7 +1099,7 @@ div[data-role="editor-toolbar"] {
 }
 
 .dark-bg {
-  color : black;
+  color: #eeeeee;
   background : #1a2732;
   background-color : #1a2732;
 }
@@ -4744,6 +4744,10 @@ body {
 
 .thumb {
     margin-bottom: 30px;
+    min-width: 300px;
+    min-height: 300px;
+    max-width: 300px;
+    max-height: 300px;
 }
 
 .imageSelected{
@@ -5415,4 +5419,14 @@ li.active span.round-tabs.five {
 
 .projectListMenu li{
     cursor: pointer;
+}
+
+.notactive {
+  cursor: no-allowed;
+  pointer-events: none;
+}
+
+.header img{
+  width: 60px;
+  padding-top: 4px;
 }

@@ -46,7 +46,7 @@ $(document).ready(function(){
               var presion = datos.presion;
               var calidadDelAire = datos.calidad_aire;
 
-              newDateHtml += '<tr><td class="text-center">'+fechaFormateada+'</td><td class="text-center">'+altitud+'</td><td class="text-center">'+temperatura+'</td><td class="text-center">'+humedad+'</td><td class="text-center">'+presion+'</td><td class="text-center">'+calidadDelAire+'</td></tr>'
+              newDateHtml += '<tr><td class="text-center">'+fechaFormateada+'</td><td class="text-center">'+altitud+'</td><td class="text-center">'+temperatura+'</td><td class="text-center">'+humedad+'</td><td class="text-center">'+presion+'</td><td class="text-center hideToken">'+calidadDelAire+'</td></tr>'
 
           });
           $("#tablaDatos").append(newDateHtml);
