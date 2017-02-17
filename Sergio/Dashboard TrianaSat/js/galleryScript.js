@@ -60,9 +60,11 @@ $(document).ready(function() {
           console.log(fotos);
           var urls = [];
 
-          for (i = 0; i < fotos.length; i++) {
-            urls.push(fotos[i].innerHTML.substring(32).split(" ")[0]);
-          }
+          $.each(fotos, function(i, foto){
+              var photoUrl = $(foto).children('img').attr('src');
+              urls.push(photoUrl);
+          });
+
           console.log(urls);
           var jsonString = JSON.stringify(urls);
           console.log(jsonString);

@@ -1,9 +1,9 @@
 <?php
-$servername = "mysql.hostinger.es";//"172.27.0.48";//"localhost";//
-$username = "u202739290_tuite";
-$password = "gabronio";
-$dbname = "u202739290_tuite";
-$id= 1;
+$servername = "localhost";//"mysql.hostinger.es";//"172.27.0.48";//"localhost";//
+$username = "root";//"u202739290_tuite";
+$password = "";//"gabronio";
+$dbname = "bd_t";//"u202739290_tuite";
+$id= 15;
 
 global $api_key;
 global $api_secret;
@@ -19,6 +19,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }else{
   echo "<h3>Connected successfully</h3>";
+    echo "<script>alert('hola')</script>";
 
 
       // Hago un Select de los TOKENS del proyecto
@@ -33,7 +34,7 @@ if ($conn->connect_error) {
            $api_secret =           $row["api_secret"];
            $access_token =         $row["access_token"];
            $access_token_secret =  $row["access_token_secret"];
-   
+
            if($api_key =="" || $api_secret =="" || $access_token =="" || $access_token_secret ==""){
              //header("Location: generaToken.html");
              echo "<h3>Tienes que generar el token</h3><br><i>Header_Location</i>";
@@ -43,7 +44,7 @@ if ($conn->connect_error) {
              twittear();
            }
        }
-   
+
    } else {
        //echo "0 results";
        header("Location: https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Flocalhost%2FTwitter2%2FTwitter2%2Fhome.php&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=%C2%A1Me%20encanta%20la%20foto%20que%20hemos%20tomado%20desde%20la%20sonda!&tw_p=tweetbutton&url=https%3A%2F%2Fdev.twitter.com%2Fweb%2Ftweet-button&via=twitterdev");
@@ -81,13 +82,13 @@ function twittear(){
     }
     echo "<u>Comprobamos dentro del array</u><br>";
     var_dump($media_files);
-    echo "<br><u>Acabamos la comprobación del array</u>";
+    echo "<br><u>Acabamos la comprobaciï¿½n del array</u>";
 
 
 
 
 
-     
+
 
      // ALOJARÃ LOS IDs DE LAS FOTOS
      $media_ids = [];
@@ -103,7 +104,7 @@ function twittear(){
 
      // CONVERTIMOS LAS IDs EN STRING
      $media_ids = implode(',', $media_ids);
-// Aquí es donde da el error
+// Aquï¿½ es donde da el error
      // ENVIAMOS EL TWEET
      $reply = $cb->statuses_update([
        'status' => 'Sonda espacial',
@@ -115,7 +116,4 @@ function twittear(){
      //echo $reply['errors'][0]['message'];
 
 }
-
-
  ?>
-		

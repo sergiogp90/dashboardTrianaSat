@@ -1,8 +1,9 @@
 var map;
+var projectId;
 
-function refreshData(){
+function refreshData(projectId){
   $.ajax({
-      url: 'http://www.trianasat.com/datosjson/coordenadas.json',
+      url: 'http://trianasat2-salesianostriana.rhcloud.com/proyectos/'+ projectId +'/gps',
       type: "GET",
       cache: false,
       success: function(root){
@@ -16,9 +17,8 @@ function refreshData(){
           strokeWeight: 4
         });
 
-        var estadoBateria = coordenadas[coordenadas.length-1].estado_bateria;
-        $('#bateria').text(estadoBateria+"%");
-
+        var estadoBateria = coordenadas[0].estado_bateria;
+        $('#bateria').text(estadoBateria+" %");
 
         var infowindow = new google.maps.InfoWindow();
 
@@ -71,34 +71,56 @@ function initMap() {
       mapTypeId: 'terrain'
     });
 
-    refreshData();
+    refreshData(projectId);
 }
 
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+    for (var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1].split("#")[0];
+    }
+
+    /* TODO activar cuando esté alojada en el dominio, cambiando la URL por la real.
+    Esto sirve para ocultar los parametros de la url
+
+    if(typeof window.history.pushState == 'function') {
+        window.history.pushState({}, "Hide", "file:///C:/Users/sguerrero/Desktop/dashboardTrianaSat/Sergio/Dashboard%20TrianaSat/publicIndex.html");
+    }*/
+    return vars;
+}
+
+
 $(document).ready(function(){
+    var getParameters = getUrlVars();
+    projectId = getParameters["projectId"];
+
     $(document).on('click', '#refreshSection', function(){
-        refreshData();
+        refreshData(projectId);
     });
 
     $.ajax({
         cache: false,
         type: "GET",
-        url: 'http://trianasat2-salesianostriana.rhcloud.com/datossensores',
+        url: "http://trianasat2-salesianostriana.rhcloud.com/proyectos/"+ projectId +"/datos_sensores",
         success: function(data) {
-            var datosSensores = data._embedded.datossensores;
-                var fecha_datosSens = moment(datosSensores.fecha).format('DD/MM/YYYY HH:mm:ss');
-                var altitud_datosSens = datosSensores.altitud;
-                var temperatura_datosSens = datosSensores.temperatura;
-                var presion_datosSens = datosSensores.presion;
-                var calidadDelAire_datosSens = datosSensores.calidad_aire;
-                var humedad_datosSens = datosSensores.humedad;
+            var datosSensores = data._embedded.datossensores[0];
 
-                $('#altitud').text(altitud_datosSens);
-                $('#temperatura').text(temperatura_datosSens);
-                $('#humedad').text(humedad_datosSens);
-                $('#presion').text(presion_datosSens);
-                $('#calidadDelAire').text(calidadDelAire_datosSens);
+            var fecha_datosSens = moment(datosSensores.fecha).format('DD/MM/YYYY HH:mm:ss');
+            var altitud_datosSens = datosSensores.altitud;
+            var temperatura_datosSens = datosSensores.temperatura;
+            var presion_datosSens = datosSensores.presion;
+            var calidadDelAire_datosSens = datosSensores.calidad_aire;
+            var humedad_datosSens = datosSensores.humedad;
 
-
+            $('#altitud').text(altitud_datosSens+" m.");
+            $('#temperatura').text(temperatura_datosSens+" ºC");
+            $('#humedad').text(humedad_datosSens+" %");
+            $('#presion').text(presion_datosSens+" hPca");
+            //$('#calidadDelAire').text(calidadDelAire_datosSens);
         },
         error: function(data) {
             alert("error ajax");

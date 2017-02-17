@@ -6,7 +6,6 @@
 */
 /* Import fonts */
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
-@import url(line-icons.css);
 
 body {
     color: #797979;
@@ -287,6 +286,10 @@ table tr th { color: #688a7e;}
     font-size: 30px;
 }
 
+header.dark-bg{
+  position: fixed;
+}
+
 /*sidebar navigation*/
 
 #sidebar {
@@ -294,6 +297,7 @@ table tr th { color: #688a7e;}
     height: 100%;
     position: fixed;
     background: #394a59;
+    padding-top: 8px;
 }
 
 .nav-collapse.collapse {
@@ -4800,6 +4804,10 @@ footer {
   right: 0px;
 }
 
+.optionsContainer a{
+    cursor: pointer;
+}
+
 .buttons {
   box-shadow: 0px 5px 11px -2px rgba(0, 0, 0, 0.18),
               0px 4px 12px -7px rgba(0, 0, 0, 0.15);
@@ -5434,4 +5442,12 @@ li.active span.round-tabs.five {
 
 #photoModal{
   width: 100%;
+}
+
+#refreshSection{
+    cursor: pointer;
+}
+
+#sidebar a{
+   cursor: pointer;
 }

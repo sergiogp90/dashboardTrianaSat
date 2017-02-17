@@ -25,12 +25,13 @@
     <section id="container" class="">
         <!--header start-->
         <header class="header dark-bg">
+            <img class="pull-left" src="img/favicon.png">
             <a href="#" class="logo">Triana<span class="lite">Sat</span></a>
 
             <!-- Opciones barra superior derecha (LOGIN) -->
             <div class="notification-row loginRegisterMenu">
                 <ul>
-                    <li id="login">
+                    <li class="hideToken" id="login">
                         <a id="login-trigger" href="#">Log in <span>▼</span></a>
                         <div id="login-content">
                             <form>
@@ -45,7 +46,7 @@
                             </form>
                         </div>
                     </li>
-                    <li id="signup">
+                    <li class="hideToken" id="signup">
                         <a data-toggle="modal" data-target="#modalNewUser" href="">Registrarse</a>
                     </li>
                 </ul>
@@ -187,6 +188,7 @@
     <script src="js/libraries/jquery.scrollTo.min.js"></script>
     <script src="js/libraries/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="js/libraries/qrcode.min.js"></script>
+    <script src="http://momentjs.com/downloads/moment.min.js" type="text/javascript"></script>
 
     <script src="js/themeScript.js" type="text/javascript"></script>
     <script src="js/projectTableScript.js"></script>

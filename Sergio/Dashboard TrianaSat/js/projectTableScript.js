@@ -33,6 +33,7 @@ var organizacionId;
 $(document).ready(function() {
     var adminLogged = $('.user-dropdown').length > 0;
 
+    // Cargar el section que tiene la tabla, y hacer la consulta para traer proyectos.
     $('#content-main .wrapper').load('sections/sectionProjectTable.html', function() {
         var newProjectsRows = "";
         var urlProyectos;
@@ -56,8 +57,11 @@ $(document).ready(function() {
                 var projectList = "";
 
                 $.each(projects, function(i, project) {
-                    newProjectsRows += '<tr token=' + project.token + '><td>' + project.nombre + '</td><td class="orgColumn">FALTA ORG</td>' +
-                        '<td>FALTA AÑADIR</td><td>' + project.localidad + '</td><td class="projectActions"><div class="btn-group">' +
+                    var projectId = project._links.self.href.split("/")[4];
+
+                    newProjectsRows += '<tr projectId=' + projectId + '><td>' + project.nombre + '</td><td class="orgColumn">FALTA ORG</td>' +
+                        '<td>'+ moment(project.fecha_creacion).format('DD/MM/YYYY') +'</td><td>'+ moment(project.fecha_lanzamiento).format('DD/MM/YYYY') +
+                        '</td><td>' + project.localidad + '</td><td class="projectActions"><div class="btn-group">' +
                         '<a class="btn btn-success" href="infoProyecto.html"><i class="icon_check_alt2"></i></a>' +
                         '<a class="btn btn-primary btnToken" data-target="#modalToken" data-toggle="modal">' +
                         '<i class="icon_info" data-target="#modalToken" data-toggle="modal"></i></a></div></td><td class="projectActions">' +
@@ -118,11 +122,11 @@ $(document).ready(function() {
     });
 
     // Abre el dashboard para el proyecto seleccionado de la tabla.
-    $(document).on('click', "tr:not(tr:first-child) td", function() {
-        var token = $(this).closest('tr').attr('token');
+    $(document).on('click', ".table-projects tr:not(tr:first-child) td", function() {
+        var projectId = $(this).closest('tr').attr('projectId');
         var redirectionUrl = adminLogged ? "adminIndex.html" : "publicIndex.html";
 
-        window.location = redirectionUrl+'?token=' + token;
+        window.location = redirectionUrl+'?projectId=' + projectId;
     });
 
     // Gestiona el alta de organización.
@@ -213,6 +217,7 @@ $(document).ready(function() {
           data: JSON.stringify(nuevoProyecto),
           success: function(root) {
               alert('Registrado proyecto correctamente.');
+              //TODO cambiar por project Id
               window.location = 'adminIndex.html?tokenUsuario=blabla&tokenProyecto='+cryptToken;
           },
           error: function(xhr, status, error) {

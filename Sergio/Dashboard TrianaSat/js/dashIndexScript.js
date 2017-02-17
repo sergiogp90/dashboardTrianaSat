@@ -1,6 +1,6 @@
 var actualMenuSelected;
 var isMobile;
-var projectToken;
+var projectId;
 
 // Cierra el menú lateral
 function closeSideBar() {
@@ -39,6 +39,7 @@ function getUrlVars() {
 
 $(document).ready(function() {
     var getParameters = getUrlVars();
+    projectId = getParameters["projectId"];
 
     // Se comprueba el tamaño del dispositivo
     checkScreenSize();
@@ -53,7 +54,7 @@ $(document).ready(function() {
     actualMenuSelected = $('#goMapa').closest('li');
     actualMenuSelected.toggleClass('active');
 
-    $('.main-wrapper').load("sections/sectionMapa.html?token=");
+    $('.main-wrapper').load("sections/sectionMapa.html");
 
     /******** EVENTOS CLICK MENÚ LATERAL ********/
 
@@ -84,7 +85,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: "GET",
-            url: 'http://trianasat2-salesianostriana.rhcloud.com/timelapse',
+            url: "http://trianasat2-salesianostriana.rhcloud.com/proyectos/"+ projectId +"/timelapse",
             beforeSend: function(xhr){
               xhr.setRequestHeader('accept','application/json');
             },
