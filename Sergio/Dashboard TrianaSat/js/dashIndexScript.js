@@ -94,7 +94,9 @@ $(document).ready(function() {
 
                 $.each(listaFotos, function(i, foto) {
                     var photoTimestamp = foto.fecha;
+                    alert(photoTimestamp);
                     var formattedDate = moment(photoTimestamp).format('DD/MM/YYYY HH:mm:ss');
+                    alert(formattedDate);
 
                     var newImageHtml = '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail">'+
                     '<img class="img-responsive lazy" data-original="'+foto.foto+'" height="200px" src="img/loading.gif" alt="" fecha="'+formattedDate+'"></a>'+
