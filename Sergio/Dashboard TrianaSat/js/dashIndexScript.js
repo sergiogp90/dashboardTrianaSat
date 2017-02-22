@@ -41,6 +41,11 @@ $(document).ready(function() {
     var getParameters = getUrlVars();
     projectId = getParameters["projectId"];
 
+    if(projectId.includes("#")){
+      projectId = projectId.split("#")[0];
+    }
+
+
     // Se comprueba el tamaño del dispositivo
     checkScreenSize();
 
@@ -55,6 +60,24 @@ $(document).ready(function() {
     actualMenuSelected.toggleClass('active');
 
     $('.main-wrapper').load("sections/sectionMapa.html");
+
+    $.ajax({
+        type: "GET",
+        url: "http://trianasat2-salesianostriana.rhcloud.com/proyectos/"+ projectId +"/timelapse",
+        beforeSend: function(xhr){
+          xhr.setRequestHeader('accept','application/json');
+        },
+        success: function(data) {
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            alert("error ajax");
+            console.log("Error ajax en la petición timelapse");
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+    });
 
     /******** EVENTOS CLICK MENÚ LATERAL ********/
 
@@ -76,6 +99,7 @@ $(document).ready(function() {
 
     $('#goGallery').on('click', function() {
         var newCols = "";
+        var thumbUrl = 'http://www.salesianos-triana.com/dam/trianasat/files/thumb_';
 
         $('.main-wrapper').load("sections/sectionGallery.html");
 
@@ -98,9 +122,11 @@ $(document).ready(function() {
                     var formattedDate = moment(photoTimestamp).format('DD/MM/YYYY HH:mm:ss');
                     alert(formattedDate);
 
+                    var photoName = foto.foto.split('/')[6];
+
                     var newImageHtml = '<div class="col-lg-3 col-md-4 col-xs-6 thumb"><a class="thumbnail">'+
-                    '<img class="img-responsive lazy" data-original="'+foto.foto+'" height="200px" src="img/loading.gif" alt="" fecha="'+formattedDate+'"></a>'+
-                    '<button class="js-button btn btn-secondary-outline btn-expand center-block" data-toggle="modal" data-target="#modalPicture"'+
+                    '<img class="img-responsive lazy" photoName="' +photoName+ '" data-original="' +(thumbUrl+photoName)+ '" height="200px" src="img/loading.gif" alt="" fecha="'+formattedDate+'"></a>'+
+                    '<button class="js-button btn bztn-secondary-outline btn-expand center-block" data-toggle="modal" data-target="#modalPicture"'+
                     ' type="button" value="Expand photo" role="button"><i class="fa fa-eye" aria-hidden="true"></i></button></div>';
 
                     newCols += newImageHtml;

@@ -4866,7 +4866,7 @@ footer {
 .buttons:not(:last-child):nth-last-child(3) {
   -webkit-transition-delay: 75ms;
           transition-delay: 40ms;
-  background-image: url('../img/icons/video-player.png');
+  background-image: url('../img/icons/gif.png');
   background-size: contain;
 }
 

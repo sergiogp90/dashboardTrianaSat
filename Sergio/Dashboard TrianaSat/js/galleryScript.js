@@ -98,11 +98,16 @@ $(document).ready(function() {
 
     // Pinta la fotografía seleccionada en el modal de detalle.
     $(document).on('click', '.btn-expand', function() {
-        var photoUrl = $(this).siblings('a.thumbnail').find('.img-responsive').attr('src');
+        var photoName = $(this).siblings('a.thumbnail').find('.img-responsive').attr('photoName');
+        var photoUrl = 'http://www.salesianos-triana.com/dam/trianasat/files/'+photoName;
         var photoDate = $(this).siblings('a.thumbnail').find('.img-responsive').attr('fecha');
         $('#photoModal').attr('src', photoUrl);
         $('#modalPictureLabel').text(photoDate);
     });
+
+    $('#modalPicture').on('hidden.bs.modal', function () {
+        $('#photoModal').attr('src', '');
+    })
 
     // Genera un GIF con las fotografías seleccionadas, y lo muestra en el menú lateral.
     $('#generateTimelapse').on('click', function() {
@@ -128,9 +133,7 @@ $(document).ready(function() {
                     var actualDate = moment().format('[Generado el] DD/MM/YY [a las] HH:mm:ss');
                     $('#modalTimelapse p').text(actualDate);
                     $("#tooltip").hide(); //Oculta el timelapse cuando termina de generar el gif
-            }else{
-              alert('hola')
-            }
+                }
         });
     });
 
